@@ -1,0 +1,99 @@
+
+.f-select {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    position: relative;
+    .current-label {
+        --bg-select: #DCDEE2;
+        min-width: 211px;
+        height: 40px;
+        padding-left: 24px;
+        padding-right: 16px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-select);
+        border-radius: 6px;
+        border: none;
+        user-select: none;
+        z-index: 2;
+        .img {
+            width: 12px;
+            margin-top: 8px;
+        }
+    }
+    .default-label {
+        color: #B6B6B6;
+        font-size: 14px;
+    }
+    .label-text {
+        --color-label-select: #000000;
+        color: var(--color-label-select);
+        font-size: 14px;
+    }
+}
+
+.options {
+    --bg-option-select: #EFF0F2;
+    width: 100%;
+    padding-top: 8px;
+    max-height: 240px;
+    @media (min-width: 768px) {
+        max-height: 361px;
+    }
+
+    overflow-y: scroll;
+    position: absolute;
+    background: var(--bg-option-select);
+    border-radius: 0 0 6px 6px;
+    top: 35px;
+    left: 0;
+    z-index: 5;
+    .option {
+        --option-select-color: #B2B2B2;
+        --option-select-color-active: black;
+        color: var(--option-select-color);
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 24px;
+        width: 100%;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 150ms;
+        .text-active {
+            color: var(--option-select-color-active);
+        }
+        &:hover {
+            background: #ffffff07;
+        }
+    }
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 20px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    --select-track: #DCDEE2;
+    background: var(--select-track);
+    border-radius: 20px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    --select-thumb: #B6B6B6;
+    border-radius: 20px;
+    background: #B6B6B6;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

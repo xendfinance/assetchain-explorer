@@ -1,0 +1,51 @@
+stages:
+  - frontend
+
+frontend-testnet:
+  stage: frontend
+  variables:
+    FRONTEND_URL_PREFIX: "testnet"
+    PROD_CLIENT_DOMAIN: "testnet.xendrwachain.com"
+    USER_FRONTEND_DEV_VUE_APP_STAKING_ADDRESS: "0xfc00face00000000000000000000000000000000"
+    USER_FRONTEND_DEV_VUE_APP_SFC_LIB_ADDRESS: "0xfc01face00000000000000000000000000000000"
+    USER_FRONTEND_DEV_VUE_APP_RPC: "https://for-test.xend.gotbit.app"
+    USER_FRONTEND_DEV_VUE_APP_CHAIN_ID: "42422"
+    USER_FRONTEND_DEV_VUE_APP_EXPLORER_TESTNET: "https://gotbit-testnetxend-chain-frontend-dev.dev.gotbit.app"
+    USER_FRONTEND_DEV_VUE_APP_EXPLORER_MAINNET: "https://gotbit-mainnetxend-chain-frontend-dev.dev.gotbit.app"
+    USER_FRONTEND_DEV_VUE_APP_TYPE: "testnet"
+    USER_FRONTEND_DEV_VUE_APP_PRICE_URL: "https://price.xendrwachain.com/api/v1"
+
+    USER_FRONTEND_PROD_VUE_APP_STAKING_ADDRESS: "0xFC00FACE00000000000000000000000000000000"
+    USER_FRONTEND_PROD_VUE_APP_RPC: "https://rpctestnet.xendrwachain.com"
+    USER_FRONTEND_PROD_VUE_APP_CHAIN_ID: "42421"
+    USER_FRONTEND_PROD_VUE_APP_EXPLORER_TESTNET: "https://testnet.xendrwachain.com"
+    USER_FRONTEND_PROD_VUE_APP_EXPLORER_MAINNET: "https://mainnet.xendrwachain.com"
+    USER_FRONTEND_PROD_VUE_APP_TYPE: "testnet"
+    USER_FRONTEND_PROD_VUE_APP_PRICE_URL: "https://price.xendrwachain.com/api/v1"
+  trigger:
+    include: $FRONTEND_DIR/.gitlab-ci.yml
+    strategy: depend
+frontend-mainnet:
+  stage: frontend
+  variables:
+    FRONTEND_URL_PREFIX: "mainnet"
+    PROD_CLIENT_DOMAIN: "mainnet.xendrwachain.com"
+
+    USER_FRONTEND_DEV_VUE_APP_STAKING_ADDRESS: "0xFC00FACE00000000000000000000000000000000"
+    USER_FRONTEND_DEV_VUE_APP_RPC: "https://for-test.xend.gotbit.app"
+    USER_FRONTEND_DEV_VUE_APP_CHAIN_ID: "42422"
+    USER_FRONTEND_DEV_VUE_APP_EXPLORER_TESTNET: "https://gotbit-testnetxend-chain-frontend-dev.dev.gotbit.app"
+    USER_FRONTEND_DEV_VUE_APP_EXPLORER_MAINNET: "https://gotbit-mainnetxend-chain-frontend-dev.dev.gotbit.app"
+    USER_FRONTEND_DEV_VUE_APP_TYPE: "mainnet"
+    USER_FRONTEND_DEV_VUE_APP_PRICE_URL: "https://price.xendrwachain.com/api/v1"
+
+    USER_FRONTEND_PROD_VUE_APP_STAKING_ADDRESS: "0xFC00FACE00000000000000000000000000000000"
+    USER_FRONTEND_PROD_VUE_APP_RPC: "https://rpcmainnet.xendrwachain.com"
+    USER_FRONTEND_PROD_VUE_APP_CHAIN_ID: "42420"
+    USER_FRONTEND_PROD_VUE_APP_EXPLORER_TESTNET: "https://testnet.xendrwachain.com"
+    USER_FRONTEND_PROD_VUE_APP_EXPLORER_MAINNET: "https://mainnet.xendrwachain.com"
+    USER_FRONTEND_PROD_VUE_APP_TYPE: "mainnet"
+    USER_FRONTEND_PROD_VUE_APP_PRICE_URL: "https://price.xendrwachain.com/api/v1"
+  trigger:
+    include: $FRONTEND_DIR/.gitlab-ci.yml
+    strategy: depend

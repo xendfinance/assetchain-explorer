@@ -28,7 +28,7 @@
                 </div>
                 <div class="col right-col right-col-custom header-li">
                     <f-navigation :items="cNavigation"></f-navigation>
-                    <FSwitchChain />
+                    <!-- <FSwitchChain /> -->
                     <f-search-box
                         ref="searchBox"
                         class="small"
@@ -59,7 +59,7 @@ import FHamburgerSwitch from "../components/FHamburgerSwitch.vue";
 import FSocialMediaLinks from "../components/FSocialMediaLinks.vue";
 import { mapState } from "vuex";
 import FSearchBox from "../components/FSearchBoxHeader.vue";
-import FSwitchChain from "../components/FSwitchChain.vue";
+// import FSwitchChain from "../components/FSwitchChain.vue";
 // import FDarkModeSwitch from "@/components/FDarkModeSwitch.vue";
 
 /**
@@ -72,7 +72,7 @@ export default {
         FNavigation,
         FHamburgerSwitch,
         FSocialMediaLinks,
-        FSwitchChain
+        // FSwitchChain
     },
 
     data() {

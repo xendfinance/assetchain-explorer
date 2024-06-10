@@ -17,98 +17,98 @@ import ProofOfStaking from "@/views/ProofOfStaking.vue";
 import DelegateVC from "@/views/DelegateVC.vue";
 
 export const routes = [
-    {
-        name: "home",
-        path: "/",
-        component: Home
-    },
-    {
-        name: "transactions",
-        path: "/transactions",
-        component: Transactions
-    },
-    {
-        name: "transaction-detail",
-        path: "/transactions/:id",
-        component: TransactionDetail
-    },
-    {
-        name: "tx-detail",
-        path: "/tx/:id",
-        component: TransactionDetail
-    },
-    {
-        name: "address-detail",
-        path: "/address/:id",
-        component: AddressDetail
-    },
-    {
-        name: "blocks",
-        path: "/blocks",
-        component: Blocks
-    },
-    {
-        name: "block-detail",
-        path: "/blocks/:id",
-        component: BlockDetail
-    },
-    {
-        name: "staking",
-        path: "/staking",
-        component: Validators
-    },
-    {
-        name: "proof-of-staking",
-        path: "/proofOfStaking",
-        component: ProofOfStaking
-    },
-    {
-        name: "validator-detail",
-        path: "/validator/:address",
-        component: ValidatorDetail
-    },
-    {
-        name: "assets",
-        path: "/assets",
-        component: Assets
-    },
-    {
-        name: "asset-detail",
-        path: "/assets/:address",
-        component: AssetDetail
-    },
-    {
-        name: "contracts",
-        path: "/contracts",
-        component: Contracts
-    },
-    {
-        path: "/validators",
-        redirect: { name: "staking" }
-    },
-    {
-        name: "epochs",
-        path: "/epochs",
-        component: Epochs
-    },
-    {
-        name: "epoch-detail",
-        path: "/epoch/:id",
-        component: EpochDetail
-    },
-    {
-        name: "delegate-vc",
-        path: "/delegate",
-        component: DelegateVC
-    },
-    {
-        name: "data-table-playground",
-        path: "/data-table-playground",
-        component: DataTablePlayground
-    },
-    {
-        name: "not-found",
-        path: "*",
-        component: NotFound
-    }
-];
+           {
+               name: "home",
+               path: "/",
+               component: Home
+           },
+           {
+               name: "transactions",
+               path: "/transactions",
+               component: Transactions
+           },
+           {
+               name: "transaction-detail",
+               path: "/transactions/:id",
+               component: TransactionDetail
+           },
+           {
+               name: "tx-detail",
+               path: "/tx/:id",
+               component: TransactionDetail
+           },
+           {
+               name: "address-detail",
+               path: "/address/:id",
+               component: AddressDetail
+           },
+           {
+               name: "blocks",
+               path: "/blocks",
+               component: Blocks
+           },
+           {
+               name: "block-detail",
+               path: "/blocks/:id",
+               component: BlockDetail
+           },
+           {
+               name: "staking",
+               path: "/staking",
+               component: Validators
+           },
+           {
+               name: "proof-of-staking",
+               path: "/proofOfStaking",
+               component: ProofOfStaking
+           },
+           {
+               name: "validator-detail",
+               path: "/validator/:address",
+               component: ValidatorDetail
+           },
+           {
+               name: "assets",
+               path: "/assets",
+               component: Assets
+           },
+           {
+               name: "asset-detail",
+               path: "/assets/:address",
+               component: AssetDetail
+           },
+           {
+               name: "contracts",
+               path: "/contracts",
+               component: Contracts
+           },
+           {
+               path: "/validators",
+               redirect: { name: "staking" }
+           },
+           {
+               name: "epochs",
+               path: "/epochs",
+               component: Epochs
+           },
+           {
+               name: "epoch-detail",
+               path: "/epoch/:id",
+               component: EpochDetail
+           },
+           {
+               name: "delegate-vc",
+               path: "/delegate",
+               component: DelegateVC
+           },
+           {
+               name: "data-table-playground",
+               path: "/data-table-playground",
+               component: DataTablePlayground
+           },
+           {
+               name: "not-found",
+               path: "*",
+               component: NotFound
+           }
+       ];

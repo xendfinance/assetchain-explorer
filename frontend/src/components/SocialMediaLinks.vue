@@ -37,7 +37,7 @@
         </li>
         <li>
             <h2>
-                Products & Services
+                Tools
             </h2>
             <div class="socialmedialinks_list">
                 <a
@@ -47,10 +47,39 @@
                 >
                     Bridge
                 </a>
-                <a> </a>
-                <a> </a>
+                <a
+                    href="https://testnet-stake.assetchain.org/"
+                    target="_blank"
+                    title="Xend Staking"
+                    >Staking</a
+                >
+                <a href="/staking" target="_blank" title="Xend Staking"
+                    >Validator's Staking</a
+                >
+                <a href="/" target="_blank" title="Swap">Swap </a>
             </div>
         </li>
+        <li>
+            <h2>
+                Developers
+            </h2>
+            <div class="socialmedialinks_list">
+                <a
+                    href="https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/"
+                    target="_blank"
+                    title="Xend Documentation"
+                >
+                    Documentation
+                </a>
+                <a
+                    href="https://asset-chain-academy.gitbook.io/asset-chain-academy/"
+                    target="_blank"
+                    title="Xend Staking"
+                    >Asset Chain Academy</a
+                >
+            </div>
+        </li>
+
         <li>
             <h2>
                 Community

@@ -51,17 +51,7 @@
         },
         {
             "url": "/transactions",
-            "title": "Transactions",
-            "children": [
-                {
-                    "url": "/transactions/details",
-                    "title": "Details"
-                },
-                {
-                    "url": "/transactions/history",
-                    "title": "History"
-                }
-            ]
+            "title": "Transactions"
         },
         {
             "url": "/blocks",
@@ -72,8 +62,50 @@
             "title": "Epochs"
         },
         {
-            "url": "/staking",
-            "title": "Staking"
+            "url": "*",
+            "title": "Staking",
+            "subcontent": [
+                {
+                    "url": "https://testnet-stake.assetchain.org/",
+                    "title": "Native Staking"
+                },
+                {
+                    "url": "/staking",
+                    "title": "Validator Staking"
+                }
+            ]
+        },
+        {
+            "url": "#",
+            "title": "Tools",
+            "subcontent": [
+                {
+                    "url": "https://bridge.xend.finance/",
+                    "title": "Bridge"
+                },
+                {
+                    "url": "https://swap-testnet.assetchain.org/",
+                    "title": "Swap"
+                }
+            ]
+        },
+        {
+            "url": "^",
+            "title": "Developers",
+            "subcontent": [
+                {
+                    "url": "https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/",
+                    "title": "Documentation"
+                },
+                {
+                    "url": "https://asset-chain-academy.gitbook.io/asset-chain-academy/",
+                    "title": "Asset Chain Academy"
+                },
+                {
+                    "url": "https://t.me/XendFinanceDevs",
+                    "title": "Asset Chain Developers"
+                }
+            ]
         },
         {
             "url": "/assets",

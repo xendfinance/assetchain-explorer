@@ -1,38 +1,46 @@
 <template>
-  <div class="f-navigation">
-    <nav>
-      <slot>
-        <ul class="no-markers" v-if="filteredItems">
-          <li v-for="item in filteredItems" :key="item.id" :class="{'has-children': item.children}">
-            <a
-              v-if="item.url.indexOf('http') === 0"
-              :href="item.url"
-              target="_blank"
-            >
-              {{ item.title }}
-            </a>
-            <router-link v-else :to="item.url">
-              {{ item.title }}
-            </router-link>
-            <ul v-if="item.children" class="dropdown">
-              <li v-for="child in item.children" :key="child.id">
-                <a
-                  v-if="child.url.indexOf('http') === 0"
-                  :href="child.url"
-                  target="_blank"
-                >
-                  {{ child.title }}
-                </a>
-                <router-link v-else :to="child.url">
-                  {{ child.title }}
-                </router-link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </slot>
-    </nav>
-  </div>
+    <div class="f-navigation">
+        <nav>
+            <slot>
+                <ul class="no-markers" v-if="filteredItems">
+                    <li
+                        v-for="item in filteredItems"
+                        :key="item.id"
+                        class="nav-item"
+                    >
+                        <a
+                            v-if="item.url.indexOf('http') === 0"
+                            :href="item.url"
+                            target="_blank"
+                        >
+                            {{ item.title }}
+                        </a>
+                        <router-link v-else :to="item.url">
+                            {{ item.title }}
+                        </router-link>
+                        <ul v-if="item.subcontent" class="dropdown">
+                            <li
+                                v-for="subitem in item.subcontent"
+                                :key="subitem.url"
+                                class="by"
+                            >
+                                <a
+                                    v-if="subitem.url.indexOf('http') === 0"
+                                    :href="subitem.url"
+                                    target="_blank"
+                                >
+                                    {{ subitem.title }}
+                                </a>
+                                <router-link v-else :to="subitem.url">
+                                    {{ subitem.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </slot>
+        </nav>
+    </div>
 </template>
 
 <script>
@@ -42,13 +50,6 @@ export default {
     mixins: [helpersMixin],
 
     props: {
-        /**
-         * Array of navigation links.
-         *
-         * One item is an object with keys:
-         * `url` - link url
-         * `title` - link title
-         */
         items: {
             type: Array,
             default() {
@@ -69,165 +70,26 @@ export default {
 </script>
 
 <style lang="scss">
-.active-color {
-    // color: white;
-}
 .f-navigation {
-  --f-navigation-link-color: #{$secondary-color-lighter};
-  --f-navigation-active: #{#000};
-  display: inline-block;
-
-  nav {
-    ul {
-      text-align: end;
-      li {
-        display: inline-block;
-        position: relative;
-        margin-inline-start: 4px;
-
-        @include links() {
-          color: var(--f-navigation-link-color);
-          display: inline-block;
-          padding: 16px 8px;
-          padding-inline-end: 24px;
-          text-decoration: none;
-          transition: all $transition-length ease;
-          border-radius: $border-radius;
-
-          &.router-link-exact-active,
-          &:hover {
-            color: var(--f-navigation-active);
-            text-decoration: none;
-          }
-        }
-
-        &.has-children {
-          &:hover .dropdown {
-            display: block;
-          }
-        }
-      }
-      .dropdown {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: #fff;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        z-index: 1000;
-
-        li {
-          display: block;
-          @include links() {
-            display: block;
-            padding: 8px 16px;
-            white-space: nowrap;
-
-            &:hover {
-              background-color: var(--f-navigation-link-color);
-              color: var(--f-navigation-active);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@include media-max(1120px) {
-  .f-navigation {
-    nav {
-      ul {
-        li {
-          @include links() {
-            font-size: 0.9em;
-            padding: 16px 4px;
-            padding-inline-end: 16px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@include media-max($bp-menu) {
-  .f-navigation {
-    nav {
-      ul {
-        li {
-          @include links() {
-            font-size: 0.8em;
-            padding: 16px 4px;
-            padding-inline-start: 5px;
-            padding-inline-end: 5px;
-          }
-        }
-      }
-
-      .no-markers {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-    }
-  }
-}
-
-@include media-max($bp-menu) {
-  .f-navigation {
-    nav {
-      ul {
-        li {
-          @include links() {
-            padding-inline-start: 2px;
-            padding-inline-end: 2px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@include media-max($bp-menu) {
-  .f-navigation {
-    nav {
-      ul {
-        li {
-          font-size: 18px;
-          display: block;
-          @include links() {
-            font-size: 1em;
-            padding: 16px 22px;
-          }
-        }
-      }
-    }
-  }
-}
-
-/* .f-navigation {
     --f-navigation-link-color: #{$secondary-color-lighter};
     --f-navigation-active: #{#000};
 
     display: inline-block;
+
     nav {
         ul {
-            text-align: end;
+            /* text-align: end; */
+
             li {
                 display: inline-block;
                 margin-inline-start: 4px;
+                position: relative;
 
                 @include links() {
                     color: var(--f-navigation-link-color);
-
-                    //letter-spacing: normal;
                     display: inline-block;
                     padding: 16px 8px;
                     padding-inline-end: 24px;
-
                     text-decoration: none;
                     transition: all $transition-length ease;
                     border-radius: $border-radius;
@@ -238,80 +100,43 @@ export default {
                         text-decoration: none;
                     }
                 }
-            }
-        }
-    }
-}
 
-@include media-max(1120px) {
-    .f-navigation {
-        nav {
-            ul {
-                li {
-                    @include links() {
-                        font-size: 0.9em;
-                        padding: 16px 4px;
-                        padding-inline-end: 16px;
+                .dropdown {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0px;
+                    background: #171822;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                    padding: 8px 0px;
+                    min-width: 200px;
+                    z-index: 1000;
+
+                    .by {
+                        /* display: flex; */
+                        display: block;
+                        text-align: center;
+
+                        @include links() {
+                            color: var(--f-navigation-link-color);
+                            display: block;
+                            padding: 8px 16px;
+                            text-decoration: none;
+                            transition: all $transition-length ease;
+
+                            &:hover {
+                                background: var(--f-navigation-link-color);
+                                color: white;
+                            }
+                        }
                     }
                 }
-            }
-        }
-    }
-}
 
-@include media-max($bp-menu) {
-    .f-navigation {
-        nav {
-            ul {
-                li {
-                    @include links() {
-                        font-size: 0.8em;
-                        padding: 16px 4px;
-                        padding-inline-start: 5px;
-                        padding-inline-end: 5px;
-                    }
-                }
-            }
-        }
-
-        .no-markers {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-    }
-}
-
-@include media-max($bp-menu) {
-    .f-navigation {
-        nav {
-            ul {
-                li {
-                    @include links() {
-                        padding-inline-start: 2px;
-                        padding-inline-end: 2px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@include media-max($bp-menu) {
-    .f-navigation {
-        // padding-top: 24px;
-        nav {
-            ul {
-                li {
-                    font-size: 18px;
+                &:hover .dropdown {
                     display: block;
-                    @include links() {
-                        font-size: 1em;
-                        padding: 16px 22px;
-                    }
                 }
             }
         }
     }
-} */
+}
 </style>

@@ -51,7 +51,17 @@
         },
         {
             "url": "/transactions",
-            "title": "Transactions"
+            "title": "Transactions",
+            "children": [
+                {
+                    "url": "/transactions/details",
+                    "title": "Details"
+                },
+                {
+                    "url": "/transactions/history",
+                    "title": "History"
+                }
+            ]
         },
         {
             "url": "/blocks",

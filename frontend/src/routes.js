@@ -16,6 +16,8 @@ import EpochDetail from "@/views/EpochDetail.vue";
 import ProofOfStaking from "@/views/ProofOfStaking.vue";
 import DelegateVC from "@/views/DelegateVC.vue";
 
+// HI
+
 export const routes = [
            {
                name: "home",

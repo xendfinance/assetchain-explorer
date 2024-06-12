@@ -2,7 +2,7 @@
     <div class="f-address-detail narrow-container narrow-container-custom">
         <div class="f-subsection title">
             <h2 class="h1">
-                Validator's Staking
+                Validator Staking
                 <!-- {{ $t("view_validator_list.title") }} -->
             </h2>
             <div class="mobile-btn">

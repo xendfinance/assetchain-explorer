@@ -28,6 +28,8 @@
                 </div>
                 <div class="col right-col right-col-custom header-li">
                     <f-navigation :items="cNavigation"></f-navigation>
+                    <!-- <f-navigation></f-navigation> -->
+                    <Navbar />
                     <!-- <FSwitchChain /> -->
                     <f-search-box
                         ref="searchBox"
@@ -55,6 +57,7 @@
 
 <script>
 import FNavigation from "../components/FNavigation.vue";
+
 import FHamburgerSwitch from "../components/FHamburgerSwitch.vue";
 import FSocialMediaLinks from "../components/FSocialMediaLinks.vue";
 import { mapState } from "vuex";
@@ -71,7 +74,7 @@ export default {
         FSearchBox,
         FNavigation,
         FHamburgerSwitch,
-        FSocialMediaLinks,
+        FSocialMediaLinks
         // FSwitchChain
     },
 

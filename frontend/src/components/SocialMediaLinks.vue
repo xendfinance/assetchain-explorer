@@ -40,23 +40,21 @@
                 Tools
             </h2>
             <div class="socialmedialinks_list">
-                <a
-                    href="https://bridge.xend.finance/"
-                    target="_blank"
-                    title="Xend Bridge"
-                >
+                <a href="https://bridge.xend.finance/" target="_blank">
                     Bridge
                 </a>
-                <a
-                    href="https://testnet-stake.assetchain.org/"
-                    target="_blank"
-                    title="Xend Staking"
-                    >Staking</a
+                <a href="https://swap-testnet.assetchain.org/" target="_blank">Swap </a>
+            </div>
+        </li>
+        <li>
+            <h2>
+                Staking
+            </h2>
+            <div class="socialmedialinks_list">
+                <a href="https://testnet-stake.assetchain.org/" target="_blank"
+                    >Native Staking</a
                 >
-                <a href="/staking" target="_blank" title="Xend Staking"
-                    >Validator's Staking</a
-                >
-                <a href="/" target="_blank" title="Swap">Swap </a>
+                <a href="/staking" target="_blank">Validator Staking </a>
             </div>
         </li>
         <li>
@@ -67,15 +65,16 @@
                 <a
                     href="https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/"
                     target="_blank"
-                    title="Xend Documentation"
                 >
                     Documentation
                 </a>
                 <a
                     href="https://asset-chain-academy.gitbook.io/asset-chain-academy/"
                     target="_blank"
-                    title="Xend Staking"
                     >Asset Chain Academy</a
+                >
+                <a href="https://t.me/XendFinanceDevs" target="_blank"
+                    >Asset Chain Developers</a
                 >
             </div>
         </li>
@@ -91,7 +90,6 @@
                             href="http://web.facebook.com/XendFinance"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Facebook"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/facebook.svg"
@@ -106,7 +104,6 @@
                             href="https://twitter.com/xendfinance"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Twitter"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/twitter.svg"
@@ -118,10 +115,9 @@
                     </div>
                     <div>
                         <a
-                            href="https://t.me/XendAnnouncements"
+                            href="https://t.me/XendFinanceDevs"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Telegram"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/telegram.svg"
@@ -138,7 +134,6 @@
                             href="http://www.reddit.com/r/XendFinance/"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Reddit"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/reddit.svg"
@@ -153,7 +148,6 @@
                             href="https://discord.gg/QGHb7jp2GV"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Discord"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/discord.svg"
@@ -168,7 +162,6 @@
                             href="https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Youtube"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/youtube.svg"

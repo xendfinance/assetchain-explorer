@@ -105,7 +105,7 @@ export default {
                     display: none;
                     position: absolute;
                     top: 100%;
-                    left: 0px;
+                    left: -60px;
                     background: #171822;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                     padding: 8px 0px;
@@ -115,7 +115,7 @@ export default {
                     .by {
                         /* display: flex; */
                         display: block;
-                        text-align: center;
+                        text-align: left;
 
                         @include links() {
                             color: var(--f-navigation-link-color);
@@ -134,6 +134,25 @@ export default {
 
                 &:hover .dropdown {
                     display: block;
+                }
+            }
+        }
+    }
+}
+@include media-max(1120px) {
+    .f-navigation {
+        nav {
+            ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                li {
+                    @include links() {
+                        font-size: 0.9em;
+                        padding: 16px 4px;
+                        padding-inline-end: 16px;
+                    }
                 }
             }
         }

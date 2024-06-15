@@ -40,10 +40,11 @@
                 Tools
             </h2>
             <div class="socialmedialinks_list">
-                <a href="https://bridge.xend.finance/" target="_blank">
+                <!-- <a href="" target="_blank">
                     Bridge
-                </a>
-                <a href="https://swap-testnet.assetchain.org/" target="_blank">Swap </a>
+                </a> -->
+                <a :href="bridgeUrl" target="_blank">Bridge</a>
+                <a :href="swapUrl" target="_blank">Swap </a>
             </div>
         </li>
         <li>
@@ -51,7 +52,7 @@
                 Staking
             </h2>
             <div class="socialmedialinks_list">
-                <a href="https://testnet-stake.assetchain.org/" target="_blank"
+                <a :href="stakingUrl" target="_blank"
                     >Native Staking</a
                 >
                 <a href="/staking" target="_blank">Validator Staking </a>
@@ -63,13 +64,13 @@
             </h2>
             <div class="socialmedialinks_list">
                 <a
-                    href="https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/"
+                    :href="docsUrl"
                     target="_blank"
                 >
                     Documentation
                 </a>
                 <a
-                    href="https://asset-chain-academy.gitbook.io/asset-chain-academy/"
+                    :href="academyUrl"
                     target="_blank"
                     >Asset Chain Academy</a
                 >
@@ -187,6 +188,15 @@ export default {
     },
     methods: {
         ...mapActions(["addChain"])
+    },
+    data() {
+        return {
+            bridgeUrl: process.env.VUE_APP_BRIDGE_URL,
+            swapUrl: process.env.VUE_APP_SWAP_URL,
+            stakingUrl: process.env.VUE_APP_STAKING_URL,
+            docsUrl: process.env.VUE_APP_DOCS_URL,
+            academyUrl: process.env.VUE_APP_ACADEMY_URL
+        };
     }
 };
 </script>

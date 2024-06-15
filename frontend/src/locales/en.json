@@ -80,7 +80,7 @@
             "title": "Tools",
             "subcontent": [
                 {
-                    "url": "https://bridge.xend.finance/",
+                    "url": "https://bridge-testnet.assetchain.org/",
                     "title": "Bridge"
                 },
                 {
@@ -90,15 +90,15 @@
             ]
         },
         {
-            "url": "https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/",
+            "url": "https://docs.assetchain.org/",
             "title": "Developers",
             "subcontent": [
                 {
-                    "url": "https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/",
+                    "url": "https://docs.assetchain.org/",
                     "title": "Documentation"
                 },
                 {
-                    "url": "https://asset-chain-academy.gitbook.io/asset-chain-academy/",
+                    "url": "https://academy.assetchain.org/",
                     "title": "Asset Chain Academy"
                 },
                 {
@@ -116,7 +116,7 @@
             "title": "Contracts"
         },
         {
-            "url": "https://faucet.xendrwachain.com/",
+            "url": "https://faucet.assetchain.org/",
             "title": "Faucet"
         }
     ],

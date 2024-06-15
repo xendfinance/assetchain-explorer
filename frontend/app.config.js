@@ -17,7 +17,7 @@ const appConfig = {
         // list of providers. if one of them is unavailable, another is randomly picked
         providers: [
             {
-                http: process.env.VUE_APP_GRAPHQL_URL + "/",
+                http: process.env.VUE_APP_GRAPHQL_URL,
                 // for subscriptions
                 ws: ""
             }

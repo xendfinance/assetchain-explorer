@@ -63,7 +63,49 @@
         },
         {
             "url": "/staking",
-            "title": "Staking"
+            "title": "Staking",
+            "subcontent": [
+                {
+                    "url": "https://testnet-stake.assetchain.org/",
+                    "title": "Native Staking"
+                },
+                {
+                    "url": "/staking",
+                    "title": "Validator Staking"
+                }
+            ]
+        },
+        {
+            "url": "https://swap-testnet.assetchain.org/",
+            "title": "Tools",
+            "subcontent": [
+                {
+                    "url": "https://bridge.xend.finance/",
+                    "title": "Bridge"
+                },
+                {
+                    "url": "https://swap-testnet.assetchain.org/",
+                    "title": "Swap"
+                }
+            ]
+        },
+        {
+            "url": "https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/",
+            "title": "Developers",
+            "subcontent": [
+                {
+                    "url": "https://ebubes-organization.gitbook.io/asset-chain-docs/official-links/",
+                    "title": "Documentation"
+                },
+                {
+                    "url": "https://asset-chain-academy.gitbook.io/asset-chain-academy/",
+                    "title": "Asset Chain Academy"
+                },
+                {
+                    "url": "https://t.me/XendFinanceDevs",
+                    "title": "Asset Chain Developers"
+                }
+            ]
         },
         {
             "url": "/assets",

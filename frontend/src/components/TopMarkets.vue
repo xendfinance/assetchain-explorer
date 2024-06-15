@@ -1,9 +1,9 @@
 <template>
     <div class="market">
-        <div class="market_block market_block__buy">
+        <a class="market_block market_block__buy" href="https://app.uniswap.org/swap?chain=arbitrum&inputCurrency=0x3096e7bfd0878cc65be71f8899bc4cfb57187ba3&outputCurrency=0x82af49447d8a07e3bd95bd0d56f35241523fbab1" target="_blank">
             <RocketSvg />
             <a class="">Buy $RWA</a>
-        </div>
+        </a>
         <a
             class="market_block"
             target="_blank"
@@ -12,7 +12,7 @@
             <GateioSvg />
             <p class="desktop">Gate</p>
         </a>
-        <a class="market_block" href="https://app.uniswap.org/" target="_blank">
+        <a class="market_block" href="https://app.uniswap.org/swap?chain=arbitrum&inputCurrency=0x3096e7bfd0878cc65be71f8899bc4cfb57187ba3&outputCurrency=0x82af49447d8a07e3bd95bd0d56f35241523fbab1" target="_blank">
             <UniswapSvg />
             <p class="desktop">UniSwap</p>
         </a>

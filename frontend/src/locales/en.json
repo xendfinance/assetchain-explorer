@@ -86,6 +86,10 @@
                 {
                     "url": "https://swap-testnet.assetchain.org/",
                     "title": "Swap"
+                },
+                {
+                    "url": "https://scan-testnet.assetchain.org/",
+                    "title": "Advance Explorer"
                 }
             ]
         },

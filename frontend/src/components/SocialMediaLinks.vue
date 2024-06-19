@@ -45,6 +45,7 @@
                 </a> -->
                 <a :href="bridgeUrl" target="_blank">Bridge</a>
                 <a :href="swapUrl" target="_blank">Swap </a>
+                 <a :href="advancedExplorerUrl" target="_blank">Advance Explorer </a>
             </div>
         </li>
         <li>
@@ -195,7 +196,8 @@ export default {
             swapUrl: process.env.VUE_APP_SWAP_URL,
             stakingUrl: process.env.VUE_APP_STAKING_URL,
             docsUrl: process.env.VUE_APP_DOCS_URL,
-            academyUrl: process.env.VUE_APP_ACADEMY_URL
+            academyUrl: process.env.VUE_APP_ACADEMY_URL,
+            advancedExplorerUrl: process.env.VUE_APP_ADAVANCE_EXPLORER_URL
         };
     }
 };

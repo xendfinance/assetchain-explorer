@@ -45,7 +45,7 @@
                 </a> -->
                 <a :href="bridgeUrl" target="_blank">Bridge</a>
                 <a :href="swapUrl" target="_blank">Swap </a>
-                 <a :href="advancedExplorerUrl" target="_blank">Advance Explorer </a>
+                 <a :href="advancedExplorerUrl" target="_blank">Advanced Explorer </a>
             </div>
         </li>
         <li>

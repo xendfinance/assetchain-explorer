@@ -9,64 +9,64 @@
         <FCard class="burnedftm_left">
             <p class="burnedftm_amount number">
                 {{ cTotalBurned }}
-                <!-- <span class="burnedftm_ftm">FTM</span> -->
                 <span class="burnedftm_ftm">{{ symbol }}</span>
             </p>
         </FCard>
 
         <template v-if="blocks.length > 0">
-            <ul class="no-markers">
-                <!-- <li
+            <FCard class="burned">
+                <div
                     v-for="block in blocks"
                     :key="block.blockNumber"
                     class="burnedftm_block"
-                    :class="{ 'burnedftm_block-animate': block.__animate__ }"
-                >
-                    <div class="burnedftm_block_burned number">
-                        <span class="fsvgicon">
-                            <icon
-                                data="@/assets/svg/fire.svg"
-                                width="20"
-                                height="20"
-                                color="#ff711f"
-                                aria-hidden="true"
-                            />
-                        </span>
-                        <span>{{ block.ftmValue }}</span>
-                    </div>
-                    <div class="burnedftm_block_info">
-                        Block {{ formatHexToInt(block.blockNumber) }} <br />
-                        <timeago
-                            :datetime="timestampToDate(block.timestamp)"
-                            :auto-update="1"
-                            :converter-options="{ includeSeconds: true }"
-                        ></timeago>
-                    </div>
-                </li> -->
-                <li
-                    v-for="block in blocks"
-                    :key="block.blockNumber"
-                    class="burnedftm_block"
-                    :class="{ 'burnedftm_block-animate': block.__animate__ }"
+                    :class="{
+                        'burnedftm_block-animate': block.__animate__
+                    }"
                     :data-blocknumber="formatHexToInt(block.blockNumber)"
                 >
                     <div class="burnedftm_block_burned number">
-                        <span class="fsvgicon">
-                            <icon
-                                data="@/assets/svg/fire.svg"
-                                width="20"
-                                height="20"
-                                color="#337AFE"
-                                aria-hidden="true"
-                            />
-                        </span>
-                        <span>{{ block.ftmValue }}</span>
+                        <div class="burnedftm_block_burned_icon">
+                            <div class="fsvgicon">
+                                <icon
+                                    data="@/assets/svg/fire.svg"
+                                    width="24"
+                                    height="24"
+                                    color="#337AFE"
+                                    aria-hidden="true"
+                                />
+                            </div>
+                            <div class="burnedftm_block_amount">
+                                <span class="burnedftm_block_amount_text"
+                                    >Amount (RWA)</span
+                                >
+                                <span class="burnedftm_block_amount_value">{{
+                                    block.ftmValue
+                                }}</span>
+                            </div>
+                        </div>
+                        <div class="burnedftm_block_info">
+                            <span class="burnedftm_block_info_text">
+                                Block</span
+                            >
+                            <!-- <span class="burnedftm_block_info_blocks">{{
+                                formatHexToInt(block.blockNumber)
+                            }}</span> -->
+                            <router-link
+                                class="burnedftm_block_info_blocks"
+                                :to="{
+                                    name: 'block-detail',
+                                    params: {
+                                        id: formatHexToInt(block.blockNumber)
+                                    }
+                                }"
+                                :title="formatHexToInt(block.blockNumber)"
+                            >
+                                {{ formatHexToInt(block.blockNumber) }}
+                            </router-link>
+                        </div>
                     </div>
-                    <div class="burnedftm_block_info">
-                        Block {{ formatHexToInt(block.blockNumber) }} <br />
-                    </div>
-                </li>
-            </ul>
+                </div>
+            </FCard>
         </template>
     </div>
 </template>
@@ -115,7 +115,12 @@ export default {
             const zeroBalance = this.$defi.fromTokenValue(this.zeroAccBalance, {
                 decimals: 18
             });
-            return formatNumberByLocale(this.totalBurned + zeroBalance, 4);
+            console.log(
+                formatNumberByLocale(this.totalBurned, 4),
+                formatNumberByLocale(zeroBalance, 4),
+                "BURNED"
+            );
+            return formatNumberByLocale(this.totalBurned, 4);
         }
     },
 
@@ -221,6 +226,14 @@ export default {
 </script>
 
 <style lang="scss">
+.burned {
+    padding: 24px 8px !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .burnedftm {
     --burnedftm-transition-length: 610ms;
     --burnedftm-border-color: #e6e6e6;
@@ -230,11 +243,11 @@ export default {
     gap: 16px;
 
     &_left {
-        max-width: 50%;
+        min-width: 50%;
         width: 100%;
         text-align: center;
         flex: 0.8;
-        padding: 50px 20px !important;
+        padding: 62px 20px !important;
     }
 
     &_amount {
@@ -250,75 +263,66 @@ export default {
         font-size: 1.125rem;
     }
 
-    ul {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: var(--f-spacer-1);
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-
     .no-markers {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
 
-    // &_block {
-    //     display: flex;
-    //     align-items: center;
-    //     opacity: 0;
-    //     padding: 10px 15px;
-    //     transition: opacity var(--burnedftm-transition-length) ease;
-
-    //     &-animate {
-    //         opacity: 1;
-    //     }
-
-    //     > * {
-    //         flex: 1;
-    //     }
-
-    //     &_burned {
-    //         display: flex;
-    //         justify-items: center;
-    //         font-size: 20px;
-    //         font-weight: 700;
-
-    //         .fsvgicon {
-    //             margin-top: -2px;
-    //             margin-right: 3px;
-    //         }
-    //     }
-
-    //     &_info {
-    //         font-size: 16px;
-    //         text-align: end;
-    //         line-height: 1.15;
-    //         font-weight: 700;
-    //     }
-
-    //     + .burnedftm_block {
-    //         border-top: 1px solid var(--burnedftm-border-color);
-    //     }
-    // }
-
     &_block {
         background: var(--f-darker-color);
         border: none;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 15px 10px 15px;
         font-size: 16px;
-
-        &:hover {
-            background: var(--f-darker-color-2);
+        border-bottom: 1px solid #23272e;
+        padding: 0 12px;
+        padding-bottom: 2px;
+        &:last-child {
+            border-bottom: none;
+        }
+        &_burned {
+            display: flex;
+            justify-content: space-between;
+            &_icon {
+                display: flex;
+            }
+        }
+        &_amount {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &_text {
+                font-size: 13px;
+                color: #6c757d;
+            }
+            &_value {
+                font-size: 15px;
+                color: #fff;
+                font-weight: 700;
+            }
+        }
+        &_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &_text {
+                font-size: 13px;
+                color: #6c757d;
+            }
+            &_blocks {
+                font-size: 15px;
+                color: #337afe !important;
+                font-weight: 700;
+            }
         }
 
         .fsvgicon {
+            width: 40px;
+            height: 40px;
+            background-color: #0b131e;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-right: 9px;
         }
     }

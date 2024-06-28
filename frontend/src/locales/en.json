@@ -131,6 +131,7 @@
         "gas_limit": "Gas Limit",
         "gas_price": "Gas Price",
         "transaction_fee": "Transaction Fee",
+        "transaction_burn": "Amount of burn tokens per transaction",
         "input_data": "Input Data",
         "decoded_input_data": "Decoded Input Data",
         "nonce": "Nonce",
@@ -171,6 +172,8 @@
         "block": "@:block",
         "block_hash": "Block Hash",
         "parent_hash": "Parent Hash",
+        "token_burns": "Amount of burn tokens per block",
+
         "timestamp": "@:timestamp",
         "transactions": "@:transactions",
         "transactions_in_block": "transactions in block",
@@ -289,6 +292,7 @@
         "duration": "Duration",
         "total_base_reward": "Total Base Reward",
         "total_fee": "Total Fee",
+        "reward_per_epoch": "Reward per epoch ",
         "total_tx_reward": "Total Tx Reward"
     },
     "rewards_estimation": {

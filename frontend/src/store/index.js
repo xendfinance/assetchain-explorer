@@ -188,6 +188,7 @@ export const store = new Vuex.Store({
                 state.network.networkOptions.rpcUrls[0]
             );
             const tx = await provider.getTransaction(txHash);
+            console.log(tx.data, "DATA");
 
             commit("setInputData", tx.data);
         },

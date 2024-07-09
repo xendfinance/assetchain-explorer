@@ -168,11 +168,11 @@
                     <FTMVault />
                 </div>
             </div> -->
-            <!-- <div class="row mat-5">
+            <div class="row mat-5">
                 <div class="col">
                     <h2 class="h3 home_h2">
                         {{ $t("view_home.total_vinu_burned") }}
-                        <f-info
+                        <!-- <f-info
                             show-on-hover
                             button-tooltip=""
                             window-class="light"
@@ -180,17 +180,17 @@
                         >
                             <span class="number">30%</span> of the paid fees is
                             permanently burnt.
-                             <span class="number">15%</span> supports the
+                            <span class="number">15%</span> supports the
                             <strong>GasM</strong> program,
                             <span class="number">10%</span> bolsters the
                             <strong>Ecosystem Vault</strong>,
                             <span class="number">30%</span> of the paid fees is
-                            permanently burnt. 
-                        </f-info>
+                            permanently burnt.
+                        </f-info> -->
                     </h2>
                     <BurnedFTM />
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
@@ -205,7 +205,7 @@ import HomeTransactionList from "@/data-tables/HomeTransactionList.vue";
 import { pollingMixin } from "@/mixins/polling.js";
 import TransactionVolumes from "@/components/TransactionVolumes.vue";
 import { formatNumberByLocale } from "@/filters.js";
-// import BurnedFTM from "@/components/BurnedFTM.vue";
+import BurnedFTM from "@/components/BurnedFTM.vue";
 import appConfig from "../../app.config.js";
 // import NetworkNodesMap from "@/components/NetworkNodesMap.vue";
 // import FInfo from "@/components/core/FInfo/FInfo.vue";
@@ -225,7 +225,7 @@ export default {
         // FTMVault,
         // FInfo,
         // NetworkNodesMap,
-        // BurnedFTM,
+        BurnedFTM,
         TransactionVolumes,
         HomeTransactionList,
         HomeBlockList,

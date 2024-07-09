@@ -190,6 +190,16 @@
                     </div>
                     <div class="row no-collapse">
                         <div class="col-4 f-row-label">
+                            {{ $t("view_transaction_detail.transaction_burn") }}
+                        </div>
+                        <div class="col">
+                            <div class="break-word" v-show="cTransaction">
+                                {{ cTransactionBurn }} {{ symbol }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-collapse">
+                        <div class="col-4 f-row-label">
                             {{ $t("view_transaction_detail.input_data") }}
                         </div>
                         <div class="col">
@@ -355,6 +365,7 @@ export default {
                         from
                         to
                         value
+                        burn
                         gas
                         gasUsed
                         gasPrice
@@ -405,6 +416,7 @@ export default {
         cTransaction() {
             // return this.transaction || this.getInputData(this.id);
             // console.log(this.getInputData(this.id), "TXXXXXX");
+            console.log(this.transaction, "cTransaction");
             return this.transaction === "0x"
                 ? this.inputData
                 : this.transaction || { block: {} };
@@ -439,6 +451,15 @@ export default {
                 if (data) {
                     if (parseInt(data.toString())) {
                         const dataArr = this.parseArgs(data);
+                        console.log(
+                            Object.entries(dataArr).filter(d => {
+                                if (isNaN(parseInt(d[0]))) {
+                                    return d;
+                                }
+                            }),
+                            dataArr,
+                            "INPUTDATA"
+                        );
 
                         return Object.entries(dataArr).filter(d => {
                             if (isNaN(parseInt(d[0]))) {
@@ -464,6 +485,16 @@ export default {
                     this.formatHexToInt(transaction.gasPrice) *
                         this.formatHexToInt(transaction.gasUsed)
                 );
+            }
+
+            return 0;
+        },
+
+        cTransactionBurn() {
+            const { transaction } = this;
+
+            if (transaction) {
+                return WEIToFTM(this.formatHexToInt(transaction.burn));
             }
 
             return 0;

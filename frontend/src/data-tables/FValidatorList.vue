@@ -182,11 +182,11 @@ import {
     timestampToDate,
     numToFixed,
     formatNumberByLocale,
-    clampDowntime,
-    formatHexToIntValidator
+    clampDowntime
 } from "../filters.js";
 import {
     sortByHex,
+    sortByLocaleString,
     // sortByLocaleString,
     sortByString
 } from "../utils/array-sorting.js";
@@ -364,10 +364,10 @@ export default {
                     width: "80px"
                 },
                 {
-                    name: "id",
+                    name: "name",
                     label: this.$t("view_validator_list.name"),
-                    formatter: formatHexToIntValidator,
-                    sortFunc: sortByHex,
+                    itemProp: "stakerInfo.name",
+                    sortFunc: sortByLocaleString,
                     width: "200px"
                 },
                 {

@@ -102,8 +102,8 @@
                             v-for="validator in validatorsIDs"
                             :key="validator"
                             :value="validator"
-                            >{{ validator }}</option
-                        >
+                            >Validator {{ validator }}
+                        </option>
                     </select>
                 </div>
                 <button

@@ -80,16 +80,26 @@
                     <div class="col-4 f-row-label">Validator</div>
                     <div class="col f-row-label">Rewards</div>
                 </div>
-                <div class="row no-collapse" v-for="itemValid in cEpoch.validatorRewards" :key="itemValid.reward">
+                <div
+                    class="row no-collapse"
+                    v-for="itemValid in cEpoch.validatorRewards"
+                    :key="itemValid.reward"
+                >
                     <div class="col-4 f-row-label">
-                        {{ (formatHexToInt(itemValid.validatorId)) }}
+                        {{ formatHexToInt(itemValid.validatorId) }}
                     </div>
                     <div class="col">
                         <div class="break-word">
-                            <f-t-m-token-value
+                            <!-- <f-t-m-token-value
                                 :value="itemValid.reward"
                                 convert
-                            />
+                            /> -->
+                            {{
+                                itemValid.reward > 0
+                                    ? WEIToFTM(itemValid.reward).toFixed(18)
+                                    : 0
+                            }}
+                            {{ symbol }}
                         </div>
                     </div>
                 </div>
@@ -105,6 +115,7 @@
 <script>
 import FCard from "../components/core/FCard/FCard.vue";
 import gql from "graphql-tag";
+import { mapGetters } from "vuex";
 import { timestampToDate, formatDate, formatHexToInt } from "../filters.js";
 import FTMTokenValue from "@/components/core/FTMTokenValue/FTMTokenValue.vue";
 import { WEIToFTM } from "@/utils/transactions.js";
@@ -161,6 +172,7 @@ export default {
     },
 
     computed: {
+        ...mapGetters(["symbol"]),
         cEpoch() {
             return this.epoch || {};
         }

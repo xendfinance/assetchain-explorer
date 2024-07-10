@@ -255,7 +255,6 @@ export default {
                 const flagged = [];
                 const inactive = [];
                 let remove = [];
-                const tUnknown = this.$t("view_validator_list.unknown");
 
                 if (_key === "stakers") {
                     data = [..._data.data.stakers];
@@ -279,7 +278,9 @@ export default {
                         }
 
                         if (!_item.stakerInfo.name) {
-                            _item.stakerInfo.name = tUnknown;
+                            _item.stakerInfo.name = `Validator ${_item.id.slice(
+                                2
+                            )}`;
                         }
 
                         if (_item.isOffline && !_item.isCheater) {

@@ -1,7 +1,7 @@
 <template>
     <div class="narrow-container">
         <f-view-heading :title="$t('epoch.detail_title')"></f-view-heading>
-        <f-epoch-detail :id="parseInt($route.params.id)"></f-epoch-detail>
+        <f-epoch-detail :id="parseInt($route.params.id) + 1"></f-epoch-detail>
     </div>
 </template>
 
@@ -14,5 +14,5 @@ export default {
         FEpochDetail,
         FViewHeading
     }
-}
+};
 </script>

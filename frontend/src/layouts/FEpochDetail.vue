@@ -5,7 +5,7 @@
                 <div class="row no-collapse">
                     <div class="col-4 f-row-label">{{ $t("epoch.epoch") }}</div>
                     <div class="col">
-                        <div class="break-word">{{ id }}</div>
+                        <div class="break-word">{{ id - 1 }}</div>
                     </div>
                 </div>
                 <div class="row no-collapse">
@@ -78,7 +78,7 @@
             <template v-if="!queryError">
                 <div class="row no-collapse">
                     <div class="col-4 f-row-label">Validator</div>
-                    <div class="col f-row-label">Rewards</div>
+                    <div class="col f-row-label">Overall Rewards</div>
                 </div>
                 <div
                     class="row no-collapse"

@@ -503,8 +503,8 @@ export default {
         max-width: fit-content;
     }
     .validator-img img {
-    width: 30px;
-    height: 30px;}
-
+        width: 30px;
+        height: 30px;
+    }
 }
 </style>

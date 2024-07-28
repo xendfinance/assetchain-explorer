@@ -502,5 +502,9 @@ export default {
         margin-inline-end: 8px;
         max-width: fit-content;
     }
+    .validator-img img {
+    width: 30px;
+    height: 30px;}
+
 }
 </style>

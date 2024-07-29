@@ -8,7 +8,7 @@ export const axiosClient = axios.create({
 });
 
 export const getPrice = async () =>
-           await axiosClient.get("", {}).then(res => res.data);
+           await axiosClient.get("price", {}).then(res => res.data);
 
 // export const getCirculation = async () =>
 //     await axiosClient.get("priceVinuCash", {}).then(res => res.data);

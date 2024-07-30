@@ -43,9 +43,10 @@
                 <!-- <a href="" target="_blank">
                     Bridge
                 </a> -->
+                 <a :href="testnetLeaderboardUrl" target="_blank">Testnet Leaderboard </a>
+                 <a :href="advancedExplorerUrl" target="_blank">Advanced Explorer </a>
                 <a :href="bridgeUrl" target="_blank">Bridge</a>
                 <a :href="swapUrl" target="_blank">Swap </a>
-                 <a :href="advancedExplorerUrl" target="_blank">Advanced Explorer </a>
             </div>
         </li>
         <li>
@@ -197,7 +198,8 @@ export default {
             stakingUrl: process.env.VUE_APP_STAKING_URL,
             docsUrl: process.env.VUE_APP_DOCS_URL,
             academyUrl: process.env.VUE_APP_ACADEMY_URL,
-            advancedExplorerUrl: process.env.VUE_APP_ADAVANCE_EXPLORER_URL
+            advancedExplorerUrl: process.env.VUE_APP_ADAVANCE_EXPLORER_URL,
+            testnetLeaderboardUrl: process.env.VUE_APP_TESTNET_LEADERBOARD
         };
     }
 };

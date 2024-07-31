@@ -50,6 +50,10 @@
             "title": "Home"
         },
         {
+            "url": "https://leaderboard.assetchain.org",
+            "title": "Testnet Leaderboard"
+        },
+        {
             "url": "/transactions",
             "title": "Transactions"
         },

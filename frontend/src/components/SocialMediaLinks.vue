@@ -43,8 +43,12 @@
                 <!-- <a href="" target="_blank">
                     Bridge
                 </a> -->
-                 <a :href="testnetLeaderboardUrl" target="_blank">Testnet Leaderboard </a>
-                 <a :href="advancedExplorerUrl" target="_blank">Advanced Explorer </a>
+                <a :href="testnetLeaderboardUrl" target="_blank"
+                    >Testnet Leaderboard
+                </a>
+                <a :href="advancedExplorerUrl" target="_blank"
+                    >Advanced Explorer
+                </a>
                 <a :href="bridgeUrl" target="_blank">Bridge</a>
                 <a :href="swapUrl" target="_blank">Swap </a>
             </div>
@@ -54,9 +58,7 @@
                 Staking
             </h2>
             <div class="socialmedialinks_list">
-                <a :href="stakingUrl" target="_blank"
-                    >Native Staking</a
-                >
+                <a :href="stakingUrl" target="_blank">Native Staking</a>
                 <a href="/staking" target="_blank">Validator Staking </a>
             </div>
         </li>
@@ -65,18 +67,13 @@
                 Developers
             </h2>
             <div class="socialmedialinks_list">
-                <a
-                    :href="docsUrl"
-                    target="_blank"
-                >
+                <a :href="docsUrl" target="_blank">
                     Documentation
                 </a>
+                <a :href="academyUrl" target="_blank">Asset Chain Academy</a>
                 <a
-                    :href="academyUrl"
+                    href="https://t.me/AssetChainBuilders"
                     target="_blank"
-                    >Asset Chain Academy</a
-                >
-                <a href="https://t.me/XendFinanceDevs" target="_blank"
                     >Asset Chain Developers</a
                 >
             </div>
@@ -104,7 +101,7 @@
                     </div>
                     <div>
                         <a
-                            href="https://twitter.com/xendfinance"
+                            href="https://x.com/rwaassetchain"
                             target="_blank"
                             rel="nofollow"
                         >
@@ -118,7 +115,7 @@
                     </div>
                     <div>
                         <a
-                            href="https://t.me/XendFinanceDevs"
+                            href=" https://t.me/AssetChainBuilders"
                             target="_blank"
                             rel="nofollow"
                         >
@@ -148,7 +145,7 @@
                     </div>
                     <div>
                         <a
-                            href="https://discord.gg/QGHb7jp2GV"
+                            href="https://discord.gg/Bd2RSPcy"
                             target="_blank"
                             rel="nofollow"
                         >
@@ -162,7 +159,7 @@
                     </div>
                     <div>
                         <a
-                            href="https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured"
+                            href="https://www.youtube.com/@AssetChain"
                             target="_blank"
                             rel="nofollow"
                         >

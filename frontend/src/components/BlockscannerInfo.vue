@@ -202,7 +202,7 @@ export default {
                 : [];
         },
         trxVolumePercent() {
-            let percent = "+0.00%";
+            let percent = "+0.0%";
             let isNegative = false;
             if (this.getTrxVolume.length) {
                 const isPositive = this.getTrxVolume[0] > this.getTrxVolume[1];
@@ -211,13 +211,13 @@ export default {
                     percent = `+${(
                         100 /
                         (this.getTrxVolume[1] / this.getTrxVolume[0])
-                    ).toFixed(2)}%`;
+                    ).toFixed(1)}%`;
                 }
                 if (isNegative) {
                     percent = `-${(
                         100 /
                         (this.getTrxVolume[0] / this.getTrxVolume[1])
-                    ).toFixed(2)}%`;
+                    ).toFixed(1)}%`;
                 }
             }
             return { isNegative, percent };

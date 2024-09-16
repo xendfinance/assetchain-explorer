@@ -87,20 +87,6 @@
                 <div class="socialmedialinks_list">
                     <div>
                         <a
-                            href="http://web.facebook.com/XendFinance"
-                            target="_blank"
-                            rel="nofollow"
-                        >
-                            <icon
-                                data="@/assets/svg/social-media/mobile/facebook.svg"
-                                width="18"
-                                height="18"
-                            ></icon>
-                            <span class="socialmedialinks_label">Facebook</span>
-                        </a>
-                    </div>
-                    <div>
-                        <a
                             href="https://x.com/rwaassetchain"
                             target="_blank"
                             rel="nofollow"
@@ -115,7 +101,7 @@
                     </div>
                     <div>
                         <a
-                            href=" https://t.me/AssetChainBuilders"
+                            href="https://t.me/AssetChainBuilders"
                             target="_blank"
                             rel="nofollow"
                         >
@@ -129,20 +115,6 @@
                     </div>
                 </div>
                 <div class="socialmedialinks_list">
-                    <div>
-                        <a
-                            href="http://www.reddit.com/r/XendFinance/"
-                            target="_blank"
-                            rel="nofollow"
-                        >
-                            <icon
-                                data="@/assets/svg/social-media/mobile/reddit.svg"
-                                width="18"
-                                height="18"
-                            ></icon>
-                            <span class="socialmedialinks_label">Reddit</span>
-                        </a>
-                    </div>
                     <div>
                         <a
                             href="https://discord.gg/Bd2RSPcy"

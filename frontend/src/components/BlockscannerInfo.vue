@@ -202,24 +202,34 @@ export default {
                 : [];
         },
         trxVolumePercent() {
-            let percent = "+0.00%";
+            let percent = "+0.0%";
             let isNegative = false;
+            const CAP = 1000; // Maximum percentage to display
+
             if (this.getTrxVolume.length) {
-                const isPositive = this.getTrxVolume[0] > this.getTrxVolume[1];
-                isNegative = this.getTrxVolume[1] > this.getTrxVolume[0];
+                const oldValue = this.getTrxVolume[1];
+                const newValue = this.getTrxVolume[0];
+                const isPositive = newValue > oldValue;
+                isNegative = oldValue > newValue;
+
+                let percentValue;
                 if (isPositive) {
-                    percent = `+${(
-                        100 /
-                        (this.getTrxVolume[1] / this.getTrxVolume[0])
-                    ).toFixed(2)}%`;
-                }
-                if (isNegative) {
-                    percent = `-${(
-                        100 /
-                        (this.getTrxVolume[0] / this.getTrxVolume[1])
-                    ).toFixed(2)}%`;
+                    percentValue = (newValue / oldValue - 1) * 100;
+                    if (percentValue > CAP) {
+                        percent = `>${CAP}.0%`;
+                    } else {
+                        percent = `+${percentValue.toFixed(2)}%`;
+                    }
+                } else if (isNegative) {
+                    percentValue = (1 - newValue / oldValue) * 100;
+                    if (percentValue > CAP) {
+                        percent = `<-${CAP}.0%`;
+                    } else {
+                        percent = `-${percentValue.toFixed(2)}%`;
+                    }
                 }
             }
+
             return { isNegative, percent };
         },
         tokenPrice() {

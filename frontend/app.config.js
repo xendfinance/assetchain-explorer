@@ -4,20 +4,20 @@
 const appConfig = {
     url: "https://xend.finance",
     // app title
-    name: "Asset Chain",
+    name: "Asset Chain Scan",
     // app description
     description:
-        "Xend allows you to explore and search the XendChain blockchain for transactions, addresses and blocks",
+        "Asset Chain Scan is a Block Explorer and Analytics Platform for Asset Chain by Xend Finance.",
     // app image
     image: "https://xend.finance/icons/logo.svg",
     // app keywords
-    keywords: "Xend",
+    keywords: "Xend, Asset Chain",
     // apollo client settings
     apollo: {
         // list of providers. if one of them is unavailable, another is randomly picked
         providers: [
             {
-                http: process.env.VUE_APP_RPC + ":16761/",
+                http: process.env.VUE_APP_GRAPHQL_URL,
                 // for subscriptions
                 ws: ""
             }
@@ -34,7 +34,7 @@ const appConfig = {
         // list of providers. if one of them is unavailable, another is randomly picked
         providers: [
             {
-                http: process.env.VUE_APP_RPC + ":16761/api",
+                http: process.env.VUE_APP_GRAPHQL_URL + "/api",
                 // for subscriptions
                 ws: ""
             }

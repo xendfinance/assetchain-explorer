@@ -37,20 +37,48 @@
         </li>
         <li>
             <h2>
-                Products & Services
+                Tools
             </h2>
             <div class="socialmedialinks_list">
-                <a
-                    href="https://bridge.xend.finance/"
-                    target="_blank"
-                    title="Xend Bridge"
-                >
+                <!-- <a href="" target="_blank">
                     Bridge
+                </a> -->
+                <a :href="testnetLeaderboardUrl" target="_blank"
+                    >Testnet Leaderboard
                 </a>
-                <a> </a>
-                <a> </a>
+                <a :href="advancedExplorerUrl" target="_blank"
+                    >Advanced Explorer
+                </a>
+                <a :href="bridgeUrl" target="_blank">Bridge</a>
+                <a :href="swapUrl" target="_blank">Swap </a>
             </div>
         </li>
+        <li>
+            <h2>
+                Staking
+            </h2>
+            <div class="socialmedialinks_list">
+                <a :href="stakingUrl" target="_blank">Native Staking</a>
+                <a href="/staking" target="_blank">Validator Staking </a>
+            </div>
+        </li>
+        <li>
+            <h2>
+                Developers
+            </h2>
+            <div class="socialmedialinks_list">
+                <a :href="docsUrl" target="_blank">
+                    Documentation
+                </a>
+                <a :href="academyUrl" target="_blank">Asset Chain Academy</a>
+                <a
+                    href="https://t.me/AssetChainBuilders"
+                    target="_blank"
+                    >Asset Chain Developers</a
+                >
+            </div>
+        </li>
+
         <li>
             <h2>
                 Community
@@ -59,25 +87,9 @@
                 <div class="socialmedialinks_list">
                     <div>
                         <a
-                            href="http://web.facebook.com/XendFinance"
+                            href="https://x.com/rwaassetchain"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Facebook"
-                        >
-                            <icon
-                                data="@/assets/svg/social-media/mobile/facebook.svg"
-                                width="18"
-                                height="18"
-                            ></icon>
-                            <span class="socialmedialinks_label">Facebook</span>
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                            href="https://twitter.com/xendfinance"
-                            target="_blank"
-                            rel="nofollow"
-                            title="XEND on Twitter"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/twitter.svg"
@@ -89,10 +101,9 @@
                     </div>
                     <div>
                         <a
-                            href="https://t.me/XendAnnouncements"
+                            href="https://t.me/AssetChainBuilders"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Telegram"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/telegram.svg"
@@ -106,25 +117,9 @@
                 <div class="socialmedialinks_list">
                     <div>
                         <a
-                            href="http://www.reddit.com/r/XendFinance/"
+                            href="https://discord.gg/Bd2RSPcy"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Reddit"
-                        >
-                            <icon
-                                data="@/assets/svg/social-media/mobile/reddit.svg"
-                                width="18"
-                                height="18"
-                            ></icon>
-                            <span class="socialmedialinks_label">Reddit</span>
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                            href="https://discord.gg/QGHb7jp2GV"
-                            target="_blank"
-                            rel="nofollow"
-                            title="XEND on Discord"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/discord.svg"
@@ -136,10 +131,9 @@
                     </div>
                     <div>
                         <a
-                            href="https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured"
+                            href="https://www.youtube.com/@AssetChain"
                             target="_blank"
                             rel="nofollow"
-                            title="XEND on Youtube"
                         >
                             <icon
                                 data="@/assets/svg/social-media/mobile/youtube.svg"
@@ -165,6 +159,17 @@ export default {
     },
     methods: {
         ...mapActions(["addChain"])
+    },
+    data() {
+        return {
+            bridgeUrl: process.env.VUE_APP_BRIDGE_URL,
+            swapUrl: process.env.VUE_APP_SWAP_URL,
+            stakingUrl: process.env.VUE_APP_STAKING_URL,
+            docsUrl: process.env.VUE_APP_DOCS_URL,
+            academyUrl: process.env.VUE_APP_ACADEMY_URL,
+            advancedExplorerUrl: process.env.VUE_APP_ADAVANCE_EXPLORER_URL,
+            testnetLeaderboardUrl: process.env.VUE_APP_TESTNET_LEADERBOARD
+        };
     }
 };
 </script>

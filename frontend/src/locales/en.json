@@ -50,6 +50,10 @@
             "title": "Home"
         },
         {
+            "url": "https://leaderboard.assetchain.org",
+            "title": "Testnet Leaderboard"
+        },
+        {
             "url": "/transactions",
             "title": "Transactions"
         },
@@ -63,7 +67,53 @@
         },
         {
             "url": "/staking",
-            "title": "Staking"
+            "title": "Staking",
+            "subcontent": [
+                {
+                    "url": "https://testnet-stake.assetchain.org/",
+                    "title": "Native Staking"
+                },
+                {
+                    "url": "/staking",
+                    "title": "Validator Staking"
+                }
+            ]
+        },
+        {
+            "url": "https://swap-testnet.assetchain.org/",
+            "title": "Tools",
+            "subcontent": [
+                {
+                    "url": "https://bridge-testnet.assetchain.org/",
+                    "title": "Bridge"
+                },
+                {
+                    "url": "https://swap-testnet.assetchain.org/",
+                    "title": "Swap"
+                },
+                {
+                    "url": "https://scan-testnet.assetchain.org/",
+                    "title": "Advanced Explorer"
+                }
+            ]
+        },
+        {
+            "url": "https://docs.assetchain.org/",
+            "title": "Developers",
+            "subcontent": [
+                {
+                    "url": "https://docs.assetchain.org/",
+                    "title": "Documentation"
+                },
+                {
+                    "url": "https://academy.assetchain.org/",
+                    "title": "Asset Chain Academy"
+                },
+                {
+                    "url": "https://t.me/XendFinanceDevs",
+                    "title": "Asset Chain Developers"
+                }
+            ]
         },
         {
             "url": "/assets",
@@ -74,7 +124,7 @@
             "title": "Contracts"
         },
         {
-            "url": "https://faucet.xendrwachain.com/",
+            "url": "https://faucet.assetchain.org/",
             "title": "Faucet"
         }
     ],

@@ -424,6 +424,10 @@ export default {
         justify-content: center;
         margin-inline-end: 8px;
     }
+    .validator-img img {
+        width: 30px;
+        height: 30px;
+    }
 
     @include links() {
         color: $primary-color;

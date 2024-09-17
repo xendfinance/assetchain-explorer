@@ -2,21 +2,7 @@
     <div class="socialmedialinks no-markers">
         <div>
             <a
-                href="http://web.facebook.com/XendFinance"
-                target="_blank"
-                rel="nofollow"
-                title="XEND on Facebook"
-            >
-                <icon
-                    data="@/assets/svg/social-media/mobile/facebook.svg"
-                    width="18"
-                    height="18"
-                ></icon>
-            </a>
-        </div>
-        <div>
-            <a
-                href="https://twitter.com/xendfinance"
+                href="https://x.com/rwaassetchain"
                 target="_blank"
                 rel="nofollow"
                 title="XEND on Twitter"
@@ -30,7 +16,7 @@
         </div>
         <div>
             <a
-                href="https://t.me/XendAnnouncements"
+                href="https://t.me/AssetChainBuilders"
                 target="_blank"
                 rel="nofollow"
                 title="XEND on Telegram"
@@ -44,7 +30,7 @@
         </div>
         <div>
             <a
-                href="https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured"
+                href="https://www.youtube.com/@AssetChain"
                 target="_blank"
                 rel="nofollow"
                 title="XEND on YouTube"
@@ -58,21 +44,7 @@
         </div>
         <div>
             <a
-                href="http://www.reddit.com/r/XendFinance/"
-                target="_blank"
-                rel="nofollow"
-                title="XEND on Instagram"
-            >
-                <icon
-                    data="@/assets/svg/social-media/mobile/reddit.svg"
-                    width="18"
-                    height="18"
-                ></icon>
-            </a>
-        </div>
-        <div>
-            <a
-                href="https://discord.gg/QGHb7jp2GV"
+                href="https://discord.gg/Bd2RSPcy"
                 target="_blank"
                 rel="nofollow"
                 title="XEND on Discord"

@@ -109,7 +109,7 @@
                                     <span class="label-white">
                                         {{ formatNum(chainState.transactions) }}
                                     </span>
-                                    <span
+                                    <!-- <span
                                         v-if="trxVolumePercent.isNegative"
                                         class="label-red"
                                     >
@@ -117,7 +117,7 @@
                                     </span>
                                     <span v-else class="label-green">
                                         {{ trxVolumePercent.percent }}
-                                    </span>
+                                    </span> -->
                                 </p>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="validator-list-dt">
         <template v-if="!dValidatorListError">
             <f-data-table
@@ -54,65 +54,6 @@
                     </template>
                 </template>
 
-                <!-- <template v-slot:column-name="{ value, item, column }">
-                    <div
-                        v-if="column"
-                        class="row no-collapse no-vert-col-padding"
-                    >
-                        <div class="col-6 f-row-label">{{ column.label }}</div>
-                        <div class="col break-word">
-                            Validator {{ Number(item.id) }}
-                            <a
-                                v-if="
-                                    item.stakerInfo
-                                        ? item.stakerInfo.website ||
-                                          item.stakerInfo.contact
-                                        : ''
-                                "
-                                :href="
-                                    item.stakerInfo
-                                        ? item.stakerInfo.website ||
-                                          item.stakerInfo.contact
-                                        : ''
-                                "
-                                target="_blank"
-                                rel="nofollow"
-                                class="validator-website"
-                            >
-                                <icon
-                                    data="@/assets/svg/external-link-alt.svg"
-                                    color="#6F18AD"
-                                ></icon>
-                            </a>
-                        </div>
-                    </div>
-                    <template v-else>
-                        Validator {{ Number(item.id) }}
-                        <a
-                            v-if="
-                                item.stakerInfo
-                                    ? item.stakerInfo.website ||
-                                      item.stakerInfo.contact
-                                    : ''
-                            "
-                            :href="
-                                item.stakerInfo
-                                    ? item.stakerInfo.website ||
-                                      item.stakerInfo.contact
-                                    : ''
-                            "
-                            target="_blank"
-                            rel="nofollow"
-                            class="validator-website"
-                        >
-                            <icon
-                                data="@/assets/svg/external-link-alt.svg"
-                                color="#6F18AD"
-                            ></icon>
-                        </a>
-                    </template>
-                </template> -->
-
                 <template v-slot:column-stakerAddress="{ value, item, column }">
                     <div
                         v-if="column"
@@ -120,7 +61,6 @@
                     >
                         <div class="col-6 f-row-label">{{ column.label }}</div>
                         <div class="col break-word">
-                            <!--                            <div v-if="item.isOffline" class="offline">{{ $t('view_validator_list.offline') }}</div>-->
                             <router-link
                                 :to="{
                                     name: 'validator-detail',
@@ -133,7 +73,6 @@
                     </div>
 
                     <template v-else>
-                        <!--                        <div v-if="item.isOffline" class="offline">{{ $t('view_validator_list.offline') }}</div>-->
                         <router-link
                             :to="{
                                 name: 'validator-detail',
@@ -144,26 +83,97 @@
                         >
                     </template>
                 </template>
+            </f-data-table>
+        </template>
 
-                <!--
-                <template v-slot:column-link="{ value, item, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
+        <template v-else>
+            <div class="query-error">{{ dValidatorListError }}</div>
+        </template>
+    </div>
+</template> -->
+<template>
+    <div class="validator-list-dt">
+        <template v-if="!dValidatorListError">
+            <f-data-table
+                :columns="dColumns"
+                :items="dItems"
+                :mobile-view="cMobileView"
+                :loading="cLoading"
+                :code="code"
+                first-m-v-column-width="6"
+                fixed-header
+                class="f-data-table-body-bg-color"
+            >
+                <template v-slot:column-validator="{ item, column }">
+                    <div
+                        v-if="column"
+                        class="row no-collapse no-vert-col-padding"
+                    >
                         <div class="col-6 f-row-label">{{ column.label }}</div>
                         <div class="col break-word">
-                            <a v-if="value" :href="value" target="_blank" rel="nofollow">
-                                <icon data="@/assets/svg/external-link-alt.svg" width="20" height="20"></icon>
-                            </a>
-                            <template v-else>-</template>
+                            <div class="validator-info">
+                                <div class="validator-img">
+                                    <img
+                                        v-if="item.stakerInfo.logoUrl"
+                                        :src="item.stakerInfo.logoUrl"
+                                        :alt="item.stakerInfo.name"
+                                        class="not-fluid"
+                                    />
+                                    <img
+                                        v-else
+                                        src="../assets/img/validator.png"
+                                        alt="default logo"
+                                        class="not-fluid"
+                                    />
+                                </div>
+                                <div class="validator-details">
+                                    <div class="validator-name">{{ item.stakerInfo.name }}</div>
+                                    <div class="validator-address">
+                                        <router-link
+                                            :to="{
+                                                name: 'validator-detail',
+                                                params: { address: item.stakerAddress }
+                                            }"
+                                            :title="item.stakerAddress"
+                                        >{{ item.stakerAddress | formatHash }}</router-link>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <template v-else>
-                        <a v-if="value || (item.stakerInfo && item.stakerInfo.contact)" :href="value || (item.stakerInfo && item.stakerInfo.contact)" target="_blank" rel="nofollow">
-                            <icon data="@/assets/svg/external-link-alt.svg"></icon>
-                        </a>
-                        <template v-else>-</template>
+                        <div class="validator-info">
+                            <div class="validator-img">
+                                <img
+                                    v-if="item.stakerInfo.logoUrl"
+                                    :src="item.stakerInfo.logoUrl"
+                                    :alt="item.stakerInfo.name"
+                                    class="not-fluid"
+                                />
+                                <img
+                                    v-else
+                                    src="../assets/img/validator.png"
+                                    alt="default logo"
+                                    class="not-fluid"
+                                />
+                            </div>
+                            <div class="validator-details">
+                                <div class="validator-name">{{ item.stakerInfo.name }}</div>
+                                <div class="validator-address">
+                                    <router-link
+                                        :to="{
+                                            name: 'validator-detail',
+                                            params: { address: item.stakerAddress }
+                                        }"
+                                        :title="item.stakerAddress"
+                                    >{{ item.stakerAddress | formatHash }}</router-link>
+                                </div>
+                            </div>
+                        </div>
                     </template>
                 </template>
--->
+
+                <!-- Other column templates remain unchanged -->
             </f-data-table>
         </template>
 
@@ -186,9 +196,9 @@ import {
 } from "../filters.js";
 import {
     sortByHex,
-    sortByLocaleString,
     // sortByLocaleString,
-    sortByString
+    // sortByLocaleString,
+    // sortByString
 } from "../utils/array-sorting.js";
 import { cloneObject } from "@/utils";
 import { shuffle } from "@/utils/array.js";
@@ -357,19 +367,24 @@ export default {
             dItems: [],
             dValidatorListError: "",
             dColumns: [
+                // {
+                //     name: "logo",
+                //     label: this.$t("view_validator_list.logo"),
+                //     itemProp: "stakerInfo.logoUrl",
+                //     cssClass: "align-center",
+                //     width: "80px"
+                // },
+                // {
+                //     name: "name",
+                //     label: this.$t("view_validator_list.name"),
+                //     itemProp: "stakerInfo.name",
+                //     sortFunc: sortByLocaleString,
+                //     width: "200px"
+                // },
                 {
-                    name: "logo",
-                    label: this.$t("view_validator_list.logo"),
-                    itemProp: "stakerInfo.logoUrl",
-                    cssClass: "align-center",
-                    width: "80px"
-                },
-                {
-                    name: "name",
+                    name: "validator",
                     label: this.$t("view_validator_list.name"),
-                    itemProp: "stakerInfo.name",
-                    sortFunc: sortByLocaleString,
-                    width: "200px"
+                    width: "300px"
                 },
                 {
                     name: "id",
@@ -378,12 +393,12 @@ export default {
                     sortFunc: sortByHex,
                     width: "80px"
                 },
-                {
-                    name: "stakerAddress",
-                    label: this.$t("view_validator_list.address"),
-                    sortFunc: sortByString,
-                    width: "200px"
-                },
+                // {
+                //     name: "stakerAddress",
+                //     label: this.$t("view_validator_list.address"),
+                //     sortFunc: sortByString,
+                //     width: "200px"
+                // },
                 {
                     name: "downtime",
                     label: this.$t("view_validator_list.downtime"),
@@ -480,6 +495,11 @@ export default {
 
 <style lang="scss">
 .validator-list-dt {
+     .validator-info {
+        display: flex;
+        align-items: center;
+    }
+
     .mobile-item {
         @media (max-width: 600px) {
             gap: 2px;

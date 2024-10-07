@@ -37,7 +37,11 @@
                     </div>
                     <div class="col">
                         <div class="break-word">
-                            <f-t-m-token-value
+                            <!-- <f-t-m-token-value
+                                :value="cEpoch.epochFee"
+                                convert
+                            /> -->
+                             <f-t-m-token-value
                                 :value="cEpoch.epochFee"
                                 convert
                             />
@@ -74,7 +78,7 @@
             </template>
         </f-card>
 
-        <f-card>
+        <!-- <f-card>
             <template v-if="!queryError">
                 <div class="row no-collapse">
                     <div class="col-4 f-row-label">Validator</div>
@@ -90,10 +94,7 @@
                     </div>
                     <div class="col">
                         <div class="break-word">
-                            <!-- <f-t-m-token-value
-                                :value="itemValid.reward"
-                                convert
-                            /> -->
+
                             {{
                                 itemValid.reward > 0
                                     ? WEIToFTM(itemValid.reward).toFixed(18)
@@ -108,7 +109,64 @@
             <template v-else>
                 <div class="query-error">{{ queryError }}</div>
             </template>
+        </f-card> -->
+
+
+        <f-card>
+            <template v-if="!queryError">
+                <!-- <div class="row no-collapse">
+                    <div class="col-4 f-row-label">Validator</div>
+                    <div class="col f-row-label">Overall Rewards</div>
+                </div>
+                <div
+                    class="row no-collapse"
+                    v-for="itemValid in cEpoch.validatorRewards"
+                    :key="itemValid.validatorId"
+                >
+                    <div class="col-4 f-row-label">
+                        {{ formatHexToInt(itemValid.validatorId) }}
+                    </div>
+                    <div class="col">
+                        <div class="break-word">
+                            {{
+                                itemValid.reward > 0
+                                    ? WEIToFTM(itemValid.reward).toFixed(18)
+                                    : 0
+                            }}
+                            {{ symbol }}
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- New section for Actual Validator Rewards -->
+                <div class="row no-collapse">
+                    <div class="col-4 f-row-label">Validator</div>
+                    <div class="col f-row-label">Overall Rewards</div>
+                </div>
+                <div
+                    class="row no-collapse"
+                    v-for="actualReward in cEpoch.actualValidatorRewards"
+                    :key="actualReward.id"
+                >
+                    <div class="col-4 f-row-label">
+                        {{ actualReward.id }}
+                    </div>
+                    <div class="col">
+                        <div class="break-word">
+                            {{
+                                WEIToFTM(actualReward.totalReward).toFixed(18)
+                            }}
+                            {{ symbol }}
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template v-else>
+                <div class="query-error">{{ queryError }}</div>
+            </template>
         </f-card>
+
     </div>
 </template>
 
@@ -119,6 +177,150 @@ import { mapGetters } from "vuex";
 import { timestampToDate, formatDate, formatHexToInt } from "../filters.js";
 import FTMTokenValue from "@/components/core/FTMTokenValue/FTMTokenValue.vue";
 import { WEIToFTM } from "@/utils/transactions.js";
+
+// export default {
+//     components: {
+//         FTMTokenValue,
+//         FCard
+//     },
+
+//     props: {
+//         /** Block number. */
+//         id: {
+//             type: Number,
+//             required: true,
+//             default: 0
+//         }
+//     },
+
+//     apollo: {
+//         epoch: {
+//             query: gql`
+//                 query EpochById($id: Long) {
+//                     epoch(id: $id) {
+//                         id
+//                         endTime
+//                         epochFee
+//                         totalTxRewardWeight
+//                         totalBaseRewardWeight
+//                         validatorRewards {
+//                             validatorId
+//                             reward
+//                         }
+//                     }
+//                 }
+//             `,
+//             variables() {
+//                 return {
+//                     id: `0x${parseInt(this.id).toString(16)}`
+//                 };
+//             },
+//             error(_error) {
+//                 this.queryError = _error.message;
+//             }
+//         }
+//     },
+
+//     data() {
+//         return {
+//             queryError: "",
+//             dRecordsCount: 0,
+//             dTransactions: []
+//         };
+//     },
+
+//     computed: {
+//         ...mapGetters(["symbol"]),
+//         cEpoch() {
+//             return this.epoch || {};
+//         }
+//     },
+
+//     methods: {
+//         timestampToDate,
+//         formatDate,
+//         formatHexToInt,
+//         WEIToFTM
+//     }
+// };
+
+// export default {
+//     components: {
+//         FTMTokenValue,
+//         FCard
+//     },
+
+//     props: {
+//         /** Block number. */
+//         id: {
+//             type: Number,
+//             required: true,
+//             default: 0
+//         }
+//     },
+
+//     apollo: {
+//         epoch: {
+//             query: gql`
+//                 query EpochById($id: Long) {
+//                     epoch(id: $id) {
+//                         id
+//                         endTime
+//                         epochFee
+//                         totalTxRewardWeight
+//                         totalBaseRewardWeight
+//                         validatorRewards {
+//                             validatorId
+//                             reward
+//                         }
+//                         actualValidatorRewards {
+//                             id
+//                             totalReward
+//                         }
+//                     }
+//                 }
+//             `,
+//             variables() {
+//                 return {
+//                     id: `0x${parseInt(this.id).toString(16)}`
+//                 };
+//             },
+//             error(_error) {
+//                 this.queryError = _error.message;
+//             }
+//         }
+//     },
+
+//     data() {
+//         return {
+//             queryError: "",
+//             dRecordsCount: 0,
+//             dTransactions: []
+//         };
+//     },
+
+//     computed: {
+//         ...mapGetters(["symbol"]),
+//         cEpoch() {
+//             return this.epoch || {};
+//         }
+//     },
+
+//     methods: {
+//         timestampToDate,
+//         formatDate,
+//         formatHexToInt,
+//         WEIToFTM,
+//         getActualReward(validatorId) {
+//             const actualReward = this.cEpoch.actualValidatorRewards.find(
+//                 reward => reward.id === validatorId
+//             );
+//             return actualReward
+//                 ? this.WEIToFTM(actualReward.totalReward).toFixed(18)
+//                 : '0';
+//         }
+//     }
+// };
 
 export default {
     components: {
@@ -148,7 +350,14 @@ export default {
                         validatorRewards {
                             validatorId
                             reward
+                            __typename
                         }
+                        actualValidatorRewards {
+                            id
+                            totalReward
+                            __typename
+                        }
+                        __typename
                     }
                 }
             `,
@@ -185,6 +394,12 @@ export default {
         WEIToFTM
     }
 };
+
+
+
+
+
+
 </script>
 
 <style scoped>

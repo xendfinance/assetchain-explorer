@@ -34,7 +34,7 @@
                         {{ formatNumberByLocale(dTotals.totalStaked, 0) }} RWA
                     </div>
                     <div class="daily-rewards">
-                        Total Validator fee: {{ cDailyRewards }} RWA
+                        Total Validator fee: {{ dTotals.totalFees }} RWA
                     </div>
                 </div>
             </div>
@@ -181,9 +181,7 @@ export default {
         }
     },
     computed: {
-        cStaker() {
-            return this.dTotals || {};
-        }
+       
     },
     data() {
         return {
@@ -236,14 +234,7 @@ export default {
         onValidatorListInactive(_inactive) {
             this.dInactiveItems = _inactive;
         },
-        validatorPercentage() {
-            const { cStaker } = this;
-            const validatorstake =
-                cStaker && cStaker.selfStaked && cStaker.totalStaked
-                    ? (cStaker.selfStaked / cStaker.totalStaked) * 100
-                    : 0;
-            return validatorstake.toFixed(2) + "%";
-        },
+
 
         WEIToFTM,
         timestampToDate,

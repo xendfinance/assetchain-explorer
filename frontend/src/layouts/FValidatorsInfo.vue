@@ -188,7 +188,7 @@
             </div>
         </div>
 
-        <div class="f-subsection">
+        <!-- <div class="f-subsection">
             <h2 class="h1">
                 {{ $t("view_validator_list.validators") }}
                 <span v-if="dRecordsCount" class="f-records-count"
@@ -212,7 +212,7 @@
                 @validator-list-inactive="onValidatorListInactive"
             >
             </f-validator-list>
-        </div>
+        </div> -->
 
         <div class="f-subsection" v-if="dInactiveItems.length">
             <h2 class="h1">
@@ -262,7 +262,7 @@
 import gql from "graphql-tag";
 import { WEIToFTM } from "../utils/transactions.js";
 import FCard from "../components/core/FCard/FCard.vue";
-import ArrowSvg from "../assets/svg/ArrowSvg.vue";
+// import ArrowSvg from "../assets/svg/ArrowSvg.vue";
 import FValidatorList from "../data-tables/FValidatorList.vue";
 import WalletDelegation from "../views/WalletDelegation.vue";
 import {
@@ -282,7 +282,7 @@ export default {
         FValidatorList,
         FCard,
         WalletDelegation,
-        ArrowSvg
+        // ArrowSvg
     },
 
     props: {

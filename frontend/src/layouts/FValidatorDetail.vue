@@ -168,6 +168,7 @@
                 </f-card>
                 <f-card>
                     <h2>Validator stats</h2>
+
                     <div class="vif_row">
                         <div class="col-4 f-row-label">
                             <!-- {{ $t("view_validator_detail.amount_staked") }} -->
@@ -222,7 +223,15 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <div v-if="pieChartData" class="pie-chart-container">
+                        <PieChart
+                            :chart-data="pieChartData.chartData"
+                            :chart-labels="pieChartData.chartLabels"
+                        />
+                    </div>
+
+                    <!-- Hi -->
                 </f-card>
             </div>
 
@@ -263,7 +272,7 @@ import {
 import { WEIToFTM } from "../utils/transactions.js";
 import FDelegationList from "../data-tables/FDelegationList.vue";
 import FYesNo from "../components/FYesNo.vue";
-
+import PieChart from "../components/PieChart.vue";
 import { mapGetters } from "vuex";
 
 const dayS = 60 * 60 * 24;
@@ -271,9 +280,9 @@ const dayS = 60 * 60 * 24;
 export default {
     components: {
         FYesNo,
-
         FDelegationList,
-        FCard
+        FCard,
+        PieChart
     },
 
     props: {
@@ -331,30 +340,8 @@ export default {
         return {
             dDelegationListRecordsCount: 0,
             dStakerByAddressError: "",
-            chartData: {
-                labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July"
-                ],
-                datasets: [
-                    {
-                        label: "My First Dataset",
-                        backgroundColor: "#42A5F5",
-                        borderColor: "#1E88E5",
-                        data: [40, 20, 12, 39, 10, 40, 39],
-                        fill: true
-                    }
-                ]
-            },
-            chartOptions: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
+            chartData: [],
+            chartLabels: []
         };
     },
 
@@ -431,6 +418,25 @@ export default {
                     ? (cStaker.delegatedMe / cStaker.totalStake) * 100
                     : 20;
             return delegatortake.toFixed(2) + "%";
+        },
+        pieChartData() {
+            const { cStaker } = this;
+            if (cStaker && cStaker.delegatedMe && cStaker.stake) {
+                const validatorStake = numToFixed(WEIToFTM(cStaker.stake), 0);
+                const delegatorStake = numToFixed(
+                    WEIToFTM(cStaker.delegatedMe),
+                    0
+                );
+
+                // this.chartLabels = ["Validator Stake", "Delegator Stake"];
+                // this.chartData = [validatorStake, delegatorStake];
+
+                return {
+                    chartData: [validatorStake, delegatorStake],
+                    chartLabels: ["Validator Stake", "Delegator Stake"]
+                };
+            }
+            return null;
         }
     },
 
@@ -495,6 +501,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    width: 100%;
 }
 .vif_row {
     display: flex;
@@ -504,7 +511,9 @@ export default {
 }
 @media screen and (max-width: 768px) {
     .validator_infocards {
-        grid-template-columns: repeat(1, 1fr);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
 }
 </style>

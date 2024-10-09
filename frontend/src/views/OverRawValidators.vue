@@ -1,69 +1,123 @@
 <template>
     <div class="f-validators-info">
-        <div class="validator-card">
-            <div class="validator-card-section">
+        <div class="validator_infocards">
+            <f-card>
                 <h3>Overview</h3>
-                <div class="stake-info">
-                    <div class="stake-item">
-                        <div class="stake-label">
-                            Validator's stake ({{ ((dTotals.selfStaked / dTotals.totalStaked) * 100).toFixed(2) + "%" }})
-                        </div>
-                        <div class="stake-value">
-                            {{ formatNumberByLocale(dTotals.selfStaked, 0) }}
-
-                            RWA
+                <div v-if="pieChartData" class="pie-chart-container">
+                    <PieChart
+                        :chart-data="pieChartData.chartData"
+                        :chart-labels="pieChartData.chartLabels"
+                    />
+                </div>
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Validator's stake ({{
+                                (
+                                    (dTotals.selfStaked / dTotals.totalStaked) *
+                                    100
+                                ).toFixed(2) + "%"
+                            }}) :
                         </div>
                     </div>
-                    <div class="stake-item">
-                        <div class="stake-label">
-                            Delegator's stake ({{ ((dTotals.totalDelegated / dTotals.totalStaked) * 100).toFixed(2) + "%" }})
-                        </div>
-                        <div class="stake-value">
-                            <!-- {{}} RWA -->
+                    <div class="col">
+                        {{ formatNumberByLocale(dTotals.selfStaked, 0) }}
 
-                            {{
-                                formatNumberByLocale(dTotals.totalDelegated, 0)
-                            }}
-                            RWA
-                        </div>
+                        RWA
                     </div>
                 </div>
-                <div class="total-staked-info">
-                    <div class="total-staked">
-                        Total staked:
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Delegator's stake ({{
+                                (
+                                    (dTotals.totalDelegated /
+                                        dTotals.totalStaked) *
+                                    100
+                                ).toFixed(2) + "%"
+                            }}) :
+                        </div>
+                    </div>
+                    <div class="col">
+                        {{ formatNumberByLocale(dTotals.totalDelegated, 0) }}
+                        RWA
+                    </div>
+                </div>
+
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Total staked :
+                        </div>
+                    </div>
+                    <div class="col">
                         {{ formatNumberByLocale(dTotals.totalStaked, 0) }} RWA
                     </div>
-                    <div class="daily-rewards">
-                        Total Validator fee: {{ dTotals.totalFees }} RWA
+                </div>
+
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Total Fee Rewards :
+                        </div>
+                    </div>
+                    <div class="col">
+                        {{ formatNumberByLocale(totalValidatorRewards, 0) }} RWA
                     </div>
                 </div>
-            </div>
+            </f-card>
 
-            <div class="g-epoch-info">
+            <f-card>
                 <h3>Last epoch</h3>
-                <div class="epoch-info">
-                    <div class="epoch-item">
-                        <!-- Epoch number: {{ epochIdAsInt }} -->
-                        Epoch number: {{ formatHexToInt(epoch.id) }}
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Epoch number :
+                        </div>
                     </div>
-                    <div class="epoch-item">
-                        End time:
+                    <div class="col">
+                        {{ formatHexToInt(epoch.id) }}
+                    </div>
+                </div>
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            End time :
+                        </div>
+                    </div>
+                    <div class="col">
                         {{ formatDate(timestampToDate(epoch.endTime)) }}
                     </div>
-                    <div class="epoch-item">
-                        Duration:
+                </div>
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Duration :
+                        </div>
+                    </div>
+                    <div class="col">
                         {{ formatDuration(formatHexToInt(epoch.duration)) }}
                     </div>
-                    <div class="epoch-item">
-                        Fee:
+                </div>
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Fee :
+                        </div>
+                    </div>
+                    <div class="col">
                         <f-t-m-token-value :value="epoch.epochFee" convert />
                     </div>
-                    <div class="epoch-item">
-                        <!-- <f-t-m-token-value :value="dTotalSupply" convert /> -->
-                        Total supply: {{ dTotalSupply }} RWA
-                    </div>
                 </div>
-            </div>
+                <div class="vif_row">
+                    <div class="col">
+                        <div class="validator-container">
+                            Total supply :
+                        </div>
+                    </div>
+                    <div class="col">{{ dTotalSupply }} RWA</div>
+                </div>
+            </f-card>
         </div>
 
         <div class="f-subsection">
@@ -96,6 +150,7 @@
 
 <script>
 import gql from "graphql-tag";
+import FCard from "../components/core/FCard/FCard.vue";
 import { WEIToFTM } from "../utils/transactions.js";
 import ArrowSvg from "../assets/svg/ArrowSvg.vue";
 import FValidatorList from "../data-tables/FValidatorList.vue";
@@ -111,11 +166,14 @@ import {
 import appConfig from "../../app.config.js";
 import FTMTokenValue from "@/components/core/FTMTokenValue/FTMTokenValue.vue";
 import web3utils from "web3-utils";
+import PieChart from "../components/PieChart.vue";
 export default {
     components: {
         FTMTokenValue,
         FValidatorList,
-        ArrowSvg
+        ArrowSvg,
+        FCard,
+        PieChart
     },
     props: {
         items: {
@@ -178,10 +236,66 @@ export default {
             error(_error) {
                 this.dValidatorsInfoError = _error.message;
             }
+        },
+        main_epoch: {
+            query: gql`
+                query EpochById($id: Long) {
+                    epoch(id: $id) {
+                        id
+                        endTime
+                        duration
+                        epochFee
+                        totalSupply
+                        baseRewardPerSecond
+                        actualValidatorRewards {
+                            id
+                            totalReward
+                            __typename
+                        }
+                        __typename
+                    }
+                }
+            `,
+            // ... rest of the epoch query options ...
+            result(_data) {
+                // console.log("Fetched data:", _data);
+                // this.dTotalSupply = formatNumberByLocale(
+                //     numToFixed(WEIToFTM(_data.data.main_epoch.totalSupply), 0),
+                //     0
+                // );
+                // Store the actualValidatorRewards for use in computed property
+                this.actualValidatorRewards =
+                    _data.data.epoch.actualValidatorRewards;
+
+                console.log(
+                    "Fetched data's:",
+                    _data.data.epoch.actualValidatorRewards
+                );
+            }
         }
     },
     computed: {
-       
+        totalValidatorRewards() {
+            return this.actualValidatorRewards.reduce((total, validator) => {
+                return total + parseFloat(WEIToFTM(validator.totalReward));
+            }, 0);
+        },
+        pieChartData() {
+            if (
+                this.dTotals &&
+                this.dTotals.totalDelegated &&
+                this.dTotals.selfStaked
+            ) {
+                const validatorStake = this.dTotals.selfStaked;
+                const delegatorStake = this.dTotals.totalDelegated;
+
+                return {
+                    chartData: [validatorStake, delegatorStake],
+                    chartLabels: ["Validator Stake", "Delegator Stake"]
+                };
+            }
+            return null;
+        }
     },
     data() {
         return {
@@ -191,10 +305,13 @@ export default {
             dFlaggedItems: [],
             dInactiveItems: [],
             dValidatorsInfoError: "",
+            actualValidatorRewards: [],
             dTotals: {},
             dTotalSupply: 0,
             dRecordsCount: 0,
             showRewardsEstimation: appConfig.flags.rewardsEstimation,
+            chartData: [],
+            chartLabels: [],
             showValidators: true
         };
     },
@@ -202,6 +319,10 @@ export default {
         /**
          * @param {int} _num
          */
+        formatLargeNumber(num) {
+            // Convert to a fixed number of decimal places (e.g., 2)
+            return parseFloat(num.toFixed(2));
+        },
         onRecordsCount(_num) {
             this.dRecordsCount = _num;
         },
@@ -235,7 +356,6 @@ export default {
             this.dInactiveItems = _inactive;
         },
 
-
         WEIToFTM,
         timestampToDate,
         formatHexToInt,
@@ -268,62 +388,23 @@ button {
     outline: inherit;
 }
 
-.validator-card {
+.validator_infocards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    /* justify-content: space-between; */
-}
-
-.validator-card-section,
-.epoch-info {
-    display: flex;
-    flex-direction: column;
-    background: #181a1f;
-    padding: 20px;
-    border-radius: 10px;
-    color: #fff;
-}
-.g-epoch-info {
-    background: #181a1f;
-    padding: 20px;
-    border-radius: 10px;
-    color: #fff;
-}
-.stake-info {
-    margin-bottom: 10px;
-}
-
-.stake-item {
-    display: flex;
     gap: 2rem;
-    /* justify-content: space-between; */
-    margin: 5px 0;
+    width: 100%;
 }
-
-.total-staked-info {
-    margin-top: 10px;
+.vif_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
-
-.epoch-item {
-    margin: 5px 0;
-}
-
-.stake-label,
-.stake-value,
-.total-staked,
-.daily-rewards {
-    color: #ccc;
-}
-
-.stake-label {
-    font-size: 14px;
-}
-
-.stake-value,
-.total-staked,
-.daily-rewards {
-    font-size: 16px;
-    font-weight: bold;
+@media screen and (max-width: 768px) {
+    .validator_infocards {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 }
 </style>

@@ -41,7 +41,7 @@
                                 :value="cEpoch.epochFee"
                                 convert
                             /> -->
-                             <f-t-m-token-value
+                            <f-t-m-token-value
                                 :value="cEpoch.epochFee"
                                 convert
                             />
@@ -111,7 +111,6 @@
             </template>
         </f-card> -->
 
-
         <f-card>
             <template v-if="!queryError">
                 <!-- <div class="row no-collapse">
@@ -153,10 +152,10 @@
                     </div>
                     <div class="col">
                         <div class="break-word">
-                            {{
-                                WEIToFTM(actualReward.totalReward).toFixed(18)
-                            }}
-                            {{ symbol }}
+                            <f-t-m-token-value
+                                :value="actualReward.totalReward"
+                                convert
+                            />
                         </div>
                     </div>
                 </div>
@@ -166,7 +165,6 @@
                 <div class="query-error">{{ queryError }}</div>
             </template>
         </f-card>
-
     </div>
 </template>
 
@@ -244,84 +242,6 @@ import { WEIToFTM } from "@/utils/transactions.js";
 //     }
 // };
 
-// export default {
-//     components: {
-//         FTMTokenValue,
-//         FCard
-//     },
-
-//     props: {
-//         /** Block number. */
-//         id: {
-//             type: Number,
-//             required: true,
-//             default: 0
-//         }
-//     },
-
-//     apollo: {
-//         epoch: {
-//             query: gql`
-//                 query EpochById($id: Long) {
-//                     epoch(id: $id) {
-//                         id
-//                         endTime
-//                         epochFee
-//                         totalTxRewardWeight
-//                         totalBaseRewardWeight
-//                         validatorRewards {
-//                             validatorId
-//                             reward
-//                         }
-//                         actualValidatorRewards {
-//                             id
-//                             totalReward
-//                         }
-//                     }
-//                 }
-//             `,
-//             variables() {
-//                 return {
-//                     id: `0x${parseInt(this.id).toString(16)}`
-//                 };
-//             },
-//             error(_error) {
-//                 this.queryError = _error.message;
-//             }
-//         }
-//     },
-
-//     data() {
-//         return {
-//             queryError: "",
-//             dRecordsCount: 0,
-//             dTransactions: []
-//         };
-//     },
-
-//     computed: {
-//         ...mapGetters(["symbol"]),
-//         cEpoch() {
-//             return this.epoch || {};
-//         }
-//     },
-
-//     methods: {
-//         timestampToDate,
-//         formatDate,
-//         formatHexToInt,
-//         WEIToFTM,
-//         getActualReward(validatorId) {
-//             const actualReward = this.cEpoch.actualValidatorRewards.find(
-//                 reward => reward.id === validatorId
-//             );
-//             return actualReward
-//                 ? this.WEIToFTM(actualReward.totalReward).toFixed(18)
-//                 : '0';
-//         }
-//     }
-// };
-
 export default {
     components: {
         FTMTokenValue,
@@ -394,12 +314,6 @@ export default {
         WEIToFTM
     }
 };
-
-
-
-
-
-
 </script>
 
 <style scoped>

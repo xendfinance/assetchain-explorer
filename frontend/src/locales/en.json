@@ -97,27 +97,10 @@
                 }
             ]
         },
+      
         {
-            "url": "https://docs.assetchain.org/",
-            "title": "Developers",
-            "subcontent": [
-                {
-                    "url": "https://docs.assetchain.org/",
-                    "title": "Documentation"
-                },
-                {
-                    "url": "https://academy.assetchain.org/",
-                    "title": "Asset Chain Academy"
-                },
-                {
-                    "url": " https://t.me/AssetChainBuilders",
-                    "title": "Asset Chain Developers"
-                }
-            ]
-        },
-        {
-            "url": "/assets",
-            "title": "Assets"
+            "url": "/overall-validators",
+            "title": "Validators"
         },
         {
             "url": "/contracts",

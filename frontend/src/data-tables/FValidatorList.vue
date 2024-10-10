@@ -34,15 +34,22 @@
                                     />
                                 </div>
                                 <div class="validator-details">
-                                    <div class="validator-name">{{ item.stakerInfo.name }}</div>
+                                    <div class="validator-name">
+                                        {{ item.stakerInfo.name }}
+                                    </div>
                                     <div class="validator-address">
                                         <router-link
                                             :to="{
                                                 name: 'validator-detail',
-                                                params: { address: item.stakerAddress }
+                                                params: {
+                                                    address: item.stakerAddress
+                                                }
                                             }"
                                             :title="item.stakerAddress"
-                                        >{{ item.stakerAddress | formatHash }}</router-link>
+                                            >{{
+                                                item.stakerAddress | formatHash
+                                            }}</router-link
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -65,15 +72,22 @@
                                 />
                             </div>
                             <div class="validator-details">
-                                <div class="validator-name">{{ item.stakerInfo.name }}</div>
+                                <div class="validator-name">
+                                    {{ item.stakerInfo.name }}
+                                </div>
                                 <div class="validator-address">
                                     <router-link
                                         :to="{
                                             name: 'validator-detail',
-                                            params: { address: item.stakerAddress }
+                                            params: {
+                                                address: item.stakerAddress
+                                            }
                                         }"
                                         :title="item.stakerAddress"
-                                    >{{ item.stakerAddress | formatHash }}</router-link>
+                                        >{{
+                                            item.stakerAddress | formatHash
+                                        }}</router-link
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -102,13 +116,13 @@ import {
     clampDowntime
 } from "../filters.js";
 import {
-    sortByHex,
+    sortByHex
     // sortByLocaleString,
     // sortByLocaleString,
     // sortByString
 } from "../utils/array-sorting.js";
 import { cloneObject } from "@/utils";
-import { shuffle } from "@/utils/array.js";
+// import { shuffle } from "@/utils/array.js";
 
 export default {
     components: {
@@ -176,7 +190,12 @@ export default {
                 if (_key === "stakers") {
                     data = [..._data.data.stakers];
 
-                    shuffle(data);
+                    // shuffle(data);
+                    data.sort((a, b) => {
+                        const idA = parseInt(a.id, 16);
+                        const idB = parseInt(b.id, 16);
+                        return idA - idB;
+                    });
 
                     data.forEach((_item, _idx) => {
                         // _item.total_staked = WEIToFTM(_item.stake) + WEIToFTM(_item.delegatedMe);
@@ -249,6 +268,8 @@ export default {
                     }
 
                     this.dItems = data;
+                    this.stakersLoaded = true; // Set flag when stakers are loaded
+                    this.updateItemsWithFees();
 
                     this.$emit("records-count", this.dItems.length);
                     this.$emit("validator-list-totals", totals);
@@ -256,6 +277,52 @@ export default {
             },
             skip() {
                 return this.items.length > 0;
+            },
+            error(_error) {
+                this.dValidatorListError = _error.message;
+            }
+        },
+        epoch: {
+            query: gql`
+                query EpochById($id: Long) {
+                    epoch(id: $id) {
+                        id
+                        epochFee
+                        actualValidatorRewards {
+                            id
+                            totalReward
+                            __typename
+                        }
+                        __typename
+                    }
+                }
+            `,
+            variables() {
+                return {
+                    id: `0x${parseInt(844).toString(16)}`
+                };
+            },
+            result(_data, _key) {
+                if (_key === "epoch") {
+                    const data = [_data.data.epoch];
+                    console.log(
+                        data[0].actualValidatorRewards,
+                        "actualValidatorRewards"
+                    );
+
+                    // Build a mapping of validator IDs to their rewards
+                    this.fees = {};
+                    data[0].actualValidatorRewards.forEach(reward => {
+                        this.fees[reward.id] = reward.totalReward;
+                    });
+                    console.log(this.fees, "fees");
+
+                    this.epochLoaded = true; // Set flag when epoch data is loaded
+                    this.updateItemsWithFees();
+                }
+            },
+            skip() {
+                return false;
             },
             error(_error) {
                 this.dValidatorListError = _error.message;
@@ -350,8 +417,22 @@ export default {
                     sortFunc: sortByHex,
                     // sortDir: 'desc',
                     cssClass: "align-end"
+                },
+                {
+                    name: "actualFee",
+                    label: "Validator Fee Reward(RWA)",
+                    formatter: _value =>
+                        formatNumberByLocale(
+                            numToFixed(this.WEIToFTM(_value), 0),
+                            0
+                        ),
+                    sortFunc: sortByHex,
+                    cssClass: "align-end"
                 }
-            ]
+            ],
+            fees: {}, // New property to store fees
+            stakersLoaded: false, // Flag to check if stakers data is loaded
+            epochLoaded: false
         };
     },
 
@@ -384,14 +465,62 @@ export default {
         sortDesc(a, b) {
             return b - a;
         },
-
+        hexToDecimal(hex) {
+            // Remove '0x' prefix if present
+            hex = hex.replace(/^0x/, "");
+            return parseInt(hex, 16).toString();
+        },
         removeItemsByIndices(_array = [], _indices = []) {
             _indices.sort(this.sortDesc);
             _indices.forEach(_idx => {
                 _array.splice(_idx, 1);
             });
         },
+        // updateItemsWithFees() {
+        //     if (this.stakersLoaded && this.epochLoaded) {
+        //         console.log("Stakers and epoch data loaded", this.fees);
+        //         this.dItems = this.dItems.map(item => {
+        //             console.log(`Processing item with id: ${item.id}`);
+        //             const fee = this.fees[item.id];
+        //             console.log(`Fee for item ${item.id}:`, fee);
+        //             return {
+        //                 ...item,
+        //                 actualFee: fee || 0
+        //             };
+        //         });
+        //         console.log(this.dItems, "Updated dItems with fees");
+        //     }
+        // },
+        updateItemsWithFees() {
+            if (this.stakersLoaded && this.epochLoaded) {
+                console.log("Stakers and epoch data loaded", this.fees);
 
+                // Convert fee keys to decimal
+                const decimalFees = Object.entries(this.fees).reduce(
+                    (acc, [key, value]) => {
+                        acc[this.hexToDecimal(key)] = value;
+                        return acc;
+                    },
+                    {}
+                );
+
+                console.log("Decimal fees:", decimalFees);
+
+                this.dItems = this.dItems.map(item => {
+                    const decimalId = this.hexToDecimal(item.id);
+                    console.log(
+                        `Processing item with id: ${item.id}, decimal id: ${decimalId}`
+                    );
+                    const fee = decimalFees[decimalId];
+                    console.log(`Fee for item ${decimalId}:`, fee);
+                    return {
+                        ...item,
+                        actualFee: fee || 0
+                    };
+                });
+                console.log(this.dItems, "Updated dItems with fees");
+            }
+        },
         WEIToFTM,
         timestampToDate,
         numToFixed,
@@ -402,7 +531,7 @@ export default {
 
 <style lang="scss">
 .validator-list-dt {
-     .validator-info {
+    .validator-info {
         display: flex;
         align-items: center;
     }

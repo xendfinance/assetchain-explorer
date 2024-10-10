@@ -144,7 +144,7 @@
                 </div>
                 <div
                     class="row no-collapse"
-                    v-for="actualReward in cEpoch.actualValidatorRewards"
+                    v-for="actualReward in sortedActualValidatorRewards"
                     :key="actualReward.id"
                 >
                     <div class="col-4 f-row-label">
@@ -175,72 +175,6 @@ import { mapGetters } from "vuex";
 import { timestampToDate, formatDate, formatHexToInt } from "../filters.js";
 import FTMTokenValue from "@/components/core/FTMTokenValue/FTMTokenValue.vue";
 import { WEIToFTM } from "@/utils/transactions.js";
-
-// export default {
-//     components: {
-//         FTMTokenValue,
-//         FCard
-//     },
-
-//     props: {
-//         /** Block number. */
-//         id: {
-//             type: Number,
-//             required: true,
-//             default: 0
-//         }
-//     },
-
-//     apollo: {
-//         epoch: {
-//             query: gql`
-//                 query EpochById($id: Long) {
-//                     epoch(id: $id) {
-//                         id
-//                         endTime
-//                         epochFee
-//                         totalTxRewardWeight
-//                         totalBaseRewardWeight
-//                         validatorRewards {
-//                             validatorId
-//                             reward
-//                         }
-//                     }
-//                 }
-//             `,
-//             variables() {
-//                 return {
-//                     id: `0x${parseInt(this.id).toString(16)}`
-//                 };
-//             },
-//             error(_error) {
-//                 this.queryError = _error.message;
-//             }
-//         }
-//     },
-
-//     data() {
-//         return {
-//             queryError: "",
-//             dRecordsCount: 0,
-//             dTransactions: []
-//         };
-//     },
-
-//     computed: {
-//         ...mapGetters(["symbol"]),
-//         cEpoch() {
-//             return this.epoch || {};
-//         }
-//     },
-
-//     methods: {
-//         timestampToDate,
-//         formatDate,
-//         formatHexToInt,
-//         WEIToFTM
-//     }
-// };
 
 export default {
     components: {
@@ -304,6 +238,14 @@ export default {
         ...mapGetters(["symbol"]),
         cEpoch() {
             return this.epoch || {};
+        },
+        sortedActualValidatorRewards() {
+            // Sort actualValidatorRewards by totalReward in ascending order
+            return this.cEpoch.actualValidatorRewards
+                ? [...this.cEpoch.actualValidatorRewards].sort(
+                      (a, b) => a.id - b.id
+                  )
+                : [];
         }
     },
 

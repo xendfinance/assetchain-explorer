@@ -50,10 +50,6 @@
             "title": "Home"
         },
         {
-            "url": "https://leaderboard.assetchain.org",
-            "title": "Testnet Leaderboard"
-        },
-        {
             "url": "/transactions",
             "title": "Transactions"
         },
@@ -70,7 +66,7 @@
             "title": "Staking",
             "subcontent": [
                 {
-                    "url": "https://testnet-stake.assetchain.org/",
+                    "url": "https://stake.assetchain.org/",
                     "title": "Native Staking"
                 },
                 {
@@ -80,19 +76,19 @@
             ]
         },
         {
-            "url": "https://swap-testnet.assetchain.org/",
+            "url": "https://swap.assetchain.org/",
             "title": "Tools",
             "subcontent": [
                 {
-                    "url": "https://bridge-testnet.assetchain.org/",
+                    "url": "https://bridge.assetchain.org/",
                     "title": "Bridge"
                 },
                 {
-                    "url": "https://swap-testnet.assetchain.org/",
+                    "url": "https://swap.assetchain.org/",
                     "title": "Swap"
                 },
                 {
-                    "url": "https://scan-testnet.assetchain.org/",
+                    "url": "https://scan.assetchain.org/",
                     "title": "Advanced Explorer"
                 }
             ]
@@ -105,10 +101,6 @@
         {
             "url": "/contracts",
             "title": "Contracts"
-        },
-        {
-            "url": "https://faucet.assetchain.org/",
-            "title": "Faucet"
         }
     ],
 

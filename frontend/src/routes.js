@@ -9,12 +9,15 @@ import BlockDetail from "./views/BlockDetail.vue";
 import Validators from "./views/Validators.vue";
 import ValidatorDetail from "./views/ValidatorDetail.vue";
 import Contracts from "./views/Contracts.vue";
-import Assets from "@/views/Assets.vue";
+// import Assets from "@/views/Assets.vue";
 import AssetDetail from "@/views/AssetDetail.vue";
 import Epochs from "@/views/Epochs.vue";
 import EpochDetail from "@/views/EpochDetail.vue";
 import ProofOfStaking from "@/views/ProofOfStaking.vue";
 import DelegateVC from "@/views/DelegateVC.vue";
+import OverRawValidators from "@/views/OverRawValidators.vue";
+
+// HI
 
 // HI
 
@@ -70,9 +73,9 @@ export const routes = [
                component: ValidatorDetail
            },
            {
-               name: "assets",
-               path: "/assets",
-               component: Assets
+               name: "overall-validators",
+               path: "/overall-validators",
+               component: OverRawValidators
            },
            {
                name: "asset-detail",

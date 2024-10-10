@@ -11,159 +11,90 @@
                 fixed-header
                 class="f-data-table-body-bg-color"
             >
-                <template v-slot:column-logo="{ value, item, column }">
+                <template v-slot:column-validator="{ item, column }">
                     <div
                         v-if="column"
                         class="row no-collapse no-vert-col-padding"
                     >
                         <div class="col-6 f-row-label">{{ column.label }}</div>
                         <div class="col break-word">
+                            <div class="validator-info">
+                                <div class="validator-img">
+                                    <img
+                                        v-if="item.stakerInfo.logoUrl"
+                                        :src="item.stakerInfo.logoUrl"
+                                        :alt="item.stakerInfo.name"
+                                        class="not-fluid"
+                                    />
+                                    <img
+                                        v-else
+                                        src="../assets/img/validator.png"
+                                        alt="default logo"
+                                        class="not-fluid"
+                                    />
+                                </div>
+                                <div class="validator-details">
+                                    <div class="validator-name">
+                                        {{ item.stakerInfo.name }}
+                                    </div>
+                                    <div class="validator-address">
+                                        <router-link
+                                            :to="{
+                                                name: 'validator-detail',
+                                                params: {
+                                                    address: item.stakerAddress
+                                                }
+                                            }"
+                                            :title="item.stakerAddress"
+                                            >{{
+                                                item.stakerAddress | formatHash
+                                            }}</router-link
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <template v-else>
+                        <div class="validator-info">
                             <div class="validator-img">
                                 <img
-                                    v-if="value"
-                                    :src="value"
+                                    v-if="item.stakerInfo.logoUrl"
+                                    :src="item.stakerInfo.logoUrl"
                                     :alt="item.stakerInfo.name"
                                     class="not-fluid"
                                 />
                                 <img
                                     v-else
                                     src="../assets/img/validator.png"
-                                    alt="xend logo"
+                                    alt="default logo"
                                     class="not-fluid"
-                                    style="width: 32px"
                                 />
                             </div>
-                        </div>
-                    </div>
-                    <template v-else>
-                        <div class="validator-img">
-                            <img
-                                v-if="value"
-                                :src="value"
-                                :alt="item.stakerInfo.name"
-                                class="not-fluid"
-                            />
-                            <img
-                                v-else
-                                src="../assets/img/validator.png"
-                                alt="xend logo"
-                                class="not-fluid"
-                                style="width: 32px"
-                            />
+                            <div class="validator-details">
+                                <div class="validator-name">
+                                    {{ item.stakerInfo.name }}
+                                </div>
+                                <div class="validator-address">
+                                    <router-link
+                                        :to="{
+                                            name: 'validator-detail',
+                                            params: {
+                                                address: item.stakerAddress
+                                            }
+                                        }"
+                                        :title="item.stakerAddress"
+                                        >{{
+                                            item.stakerAddress | formatHash
+                                        }}</router-link
+                                    >
+                                </div>
+                            </div>
                         </div>
                     </template>
                 </template>
 
-                <!-- <template v-slot:column-name="{ value, item, column }">
-                    <div
-                        v-if="column"
-                        class="row no-collapse no-vert-col-padding"
-                    >
-                        <div class="col-6 f-row-label">{{ column.label }}</div>
-                        <div class="col break-word">
-                            Validator {{ Number(item.id) }}
-                            <a
-                                v-if="
-                                    item.stakerInfo
-                                        ? item.stakerInfo.website ||
-                                          item.stakerInfo.contact
-                                        : ''
-                                "
-                                :href="
-                                    item.stakerInfo
-                                        ? item.stakerInfo.website ||
-                                          item.stakerInfo.contact
-                                        : ''
-                                "
-                                target="_blank"
-                                rel="nofollow"
-                                class="validator-website"
-                            >
-                                <icon
-                                    data="@/assets/svg/external-link-alt.svg"
-                                    color="#6F18AD"
-                                ></icon>
-                            </a>
-                        </div>
-                    </div>
-                    <template v-else>
-                        Validator {{ Number(item.id) }}
-                        <a
-                            v-if="
-                                item.stakerInfo
-                                    ? item.stakerInfo.website ||
-                                      item.stakerInfo.contact
-                                    : ''
-                            "
-                            :href="
-                                item.stakerInfo
-                                    ? item.stakerInfo.website ||
-                                      item.stakerInfo.contact
-                                    : ''
-                            "
-                            target="_blank"
-                            rel="nofollow"
-                            class="validator-website"
-                        >
-                            <icon
-                                data="@/assets/svg/external-link-alt.svg"
-                                color="#6F18AD"
-                            ></icon>
-                        </a>
-                    </template>
-                </template> -->
-
-                <template v-slot:column-stakerAddress="{ value, item, column }">
-                    <div
-                        v-if="column"
-                        class="row no-collapse no-vert-col-padding"
-                    >
-                        <div class="col-6 f-row-label">{{ column.label }}</div>
-                        <div class="col break-word">
-                            <!--                            <div v-if="item.isOffline" class="offline">{{ $t('view_validator_list.offline') }}</div>-->
-                            <router-link
-                                :to="{
-                                    name: 'validator-detail',
-                                    params: { address: value }
-                                }"
-                                :title="value"
-                                >{{ value | formatHash }}</router-link
-                            >
-                        </div>
-                    </div>
-
-                    <template v-else>
-                        <!--                        <div v-if="item.isOffline" class="offline">{{ $t('view_validator_list.offline') }}</div>-->
-                        <router-link
-                            :to="{
-                                name: 'validator-detail',
-                                params: { address: value }
-                            }"
-                            :title="value"
-                            >{{ value | formatHash }}</router-link
-                        >
-                    </template>
-                </template>
-
-                <!--
-                <template v-slot:column-link="{ value, item, column }">
-                    <div v-if="column" class="row no-collapse no-vert-col-padding">
-                        <div class="col-6 f-row-label">{{ column.label }}</div>
-                        <div class="col break-word">
-                            <a v-if="value" :href="value" target="_blank" rel="nofollow">
-                                <icon data="@/assets/svg/external-link-alt.svg" width="20" height="20"></icon>
-                            </a>
-                            <template v-else>-</template>
-                        </div>
-                    </div>
-                    <template v-else>
-                        <a v-if="value || (item.stakerInfo && item.stakerInfo.contact)" :href="value || (item.stakerInfo && item.stakerInfo.contact)" target="_blank" rel="nofollow">
-                            <icon data="@/assets/svg/external-link-alt.svg"></icon>
-                        </a>
-                        <template v-else>-</template>
-                    </template>
-                </template>
--->
+                <!-- Other column templates remain unchanged -->
             </f-data-table>
         </template>
 
@@ -185,13 +116,13 @@ import {
     clampDowntime
 } from "../filters.js";
 import {
-    sortByHex,
-    sortByLocaleString,
+    sortByHex
     // sortByLocaleString,
-    sortByString
+    // sortByLocaleString,
+    // sortByString
 } from "../utils/array-sorting.js";
 import { cloneObject } from "@/utils";
-import { shuffle } from "@/utils/array.js";
+// import { shuffle } from "@/utils/array.js";
 
 export default {
     components: {
@@ -259,7 +190,12 @@ export default {
                 if (_key === "stakers") {
                     data = [..._data.data.stakers];
 
-                    shuffle(data);
+                    // shuffle(data);
+                    data.sort((a, b) => {
+                        const idA = parseInt(a.id, 16);
+                        const idB = parseInt(b.id, 16);
+                        return idA - idB;
+                    });
 
                     data.forEach((_item, _idx) => {
                         // _item.total_staked = WEIToFTM(_item.stake) + WEIToFTM(_item.delegatedMe);
@@ -332,6 +268,8 @@ export default {
                     }
 
                     this.dItems = data;
+                    this.stakersLoaded = true; // Set flag when stakers are loaded
+                    this.updateItemsWithFees();
 
                     this.$emit("records-count", this.dItems.length);
                     this.$emit("validator-list-totals", totals);
@@ -339,6 +277,52 @@ export default {
             },
             skip() {
                 return this.items.length > 0;
+            },
+            error(_error) {
+                this.dValidatorListError = _error.message;
+            }
+        },
+        epoch: {
+            query: gql`
+                query EpochById($id: Long) {
+                    epoch(id: $id) {
+                        id
+                        epochFee
+                        actualValidatorRewards {
+                            id
+                            totalReward
+                            __typename
+                        }
+                        __typename
+                    }
+                }
+            `,
+            variables() {
+                return {
+                    id: `0x${parseInt(844).toString(16)}`
+                };
+            },
+            result(_data, _key) {
+                if (_key === "epoch") {
+                    const data = [_data.data.epoch];
+                    console.log(
+                        data[0].actualValidatorRewards,
+                        "actualValidatorRewards"
+                    );
+
+                    // Build a mapping of validator IDs to their rewards
+                    this.fees = {};
+                    data[0].actualValidatorRewards.forEach(reward => {
+                        this.fees[reward.id] = reward.totalReward;
+                    });
+                    console.log(this.fees, "fees");
+
+                    this.epochLoaded = true; // Set flag when epoch data is loaded
+                    this.updateItemsWithFees();
+                }
+            },
+            skip() {
+                return false;
             },
             error(_error) {
                 this.dValidatorListError = _error.message;
@@ -357,19 +341,24 @@ export default {
             dItems: [],
             dValidatorListError: "",
             dColumns: [
+                // {
+                //     name: "logo",
+                //     label: this.$t("view_validator_list.logo"),
+                //     itemProp: "stakerInfo.logoUrl",
+                //     cssClass: "align-center",
+                //     width: "80px"
+                // },
+                // {
+                //     name: "name",
+                //     label: this.$t("view_validator_list.name"),
+                //     itemProp: "stakerInfo.name",
+                //     sortFunc: sortByLocaleString,
+                //     width: "200px"
+                // },
                 {
-                    name: "logo",
-                    label: this.$t("view_validator_list.logo"),
-                    itemProp: "stakerInfo.logoUrl",
-                    cssClass: "align-center",
-                    width: "80px"
-                },
-                {
-                    name: "name",
+                    name: "validator",
                     label: this.$t("view_validator_list.name"),
-                    itemProp: "stakerInfo.name",
-                    sortFunc: sortByLocaleString,
-                    width: "200px"
+                    width: "300px"
                 },
                 {
                     name: "id",
@@ -378,12 +367,12 @@ export default {
                     sortFunc: sortByHex,
                     width: "80px"
                 },
-                {
-                    name: "stakerAddress",
-                    label: this.$t("view_validator_list.address"),
-                    sortFunc: sortByString,
-                    width: "200px"
-                },
+                // {
+                //     name: "stakerAddress",
+                //     label: this.$t("view_validator_list.address"),
+                //     sortFunc: sortByString,
+                //     width: "200px"
+                // },
                 {
                     name: "downtime",
                     label: this.$t("view_validator_list.downtime"),
@@ -428,8 +417,22 @@ export default {
                     sortFunc: sortByHex,
                     // sortDir: 'desc',
                     cssClass: "align-end"
+                },
+                {
+                    name: "actualFee",
+                    label: "Validator Fee Reward(RWA)",
+                    formatter: _value =>
+                        formatNumberByLocale(
+                            numToFixed(this.WEIToFTM(_value), 0),
+                            0
+                        ),
+                    sortFunc: sortByHex,
+                    cssClass: "align-end"
                 }
-            ]
+            ],
+            fees: {}, // New property to store fees
+            stakersLoaded: false, // Flag to check if stakers data is loaded
+            epochLoaded: false
         };
     },
 
@@ -462,14 +465,62 @@ export default {
         sortDesc(a, b) {
             return b - a;
         },
-
+        hexToDecimal(hex) {
+            // Remove '0x' prefix if present
+            hex = hex.replace(/^0x/, "");
+            return parseInt(hex, 16).toString();
+        },
         removeItemsByIndices(_array = [], _indices = []) {
             _indices.sort(this.sortDesc);
             _indices.forEach(_idx => {
                 _array.splice(_idx, 1);
             });
         },
+        // updateItemsWithFees() {
+        //     if (this.stakersLoaded && this.epochLoaded) {
+        //         console.log("Stakers and epoch data loaded", this.fees);
+        //         this.dItems = this.dItems.map(item => {
+        //             console.log(`Processing item with id: ${item.id}`);
+        //             const fee = this.fees[item.id];
+        //             console.log(`Fee for item ${item.id}:`, fee);
+        //             return {
+        //                 ...item,
+        //                 actualFee: fee || 0
+        //             };
+        //         });
+        //         console.log(this.dItems, "Updated dItems with fees");
+        //     }
+        // },
+        updateItemsWithFees() {
+            if (this.stakersLoaded && this.epochLoaded) {
+                console.log("Stakers and epoch data loaded", this.fees);
 
+                // Convert fee keys to decimal
+                const decimalFees = Object.entries(this.fees).reduce(
+                    (acc, [key, value]) => {
+                        acc[this.hexToDecimal(key)] = value;
+                        return acc;
+                    },
+                    {}
+                );
+
+                console.log("Decimal fees:", decimalFees);
+
+                this.dItems = this.dItems.map(item => {
+                    const decimalId = this.hexToDecimal(item.id);
+                    console.log(
+                        `Processing item with id: ${item.id}, decimal id: ${decimalId}`
+                    );
+                    const fee = decimalFees[decimalId];
+                    console.log(`Fee for item ${decimalId}:`, fee);
+                    return {
+                        ...item,
+                        actualFee: fee || 0
+                    };
+                });
+                console.log(this.dItems, "Updated dItems with fees");
+            }
+        },
         WEIToFTM,
         timestampToDate,
         numToFixed,
@@ -480,6 +531,11 @@ export default {
 
 <style lang="scss">
 .validator-list-dt {
+    .validator-info {
+        display: flex;
+        align-items: center;
+    }
+
     .mobile-item {
         @media (max-width: 600px) {
             gap: 2px;

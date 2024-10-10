@@ -65,6 +65,7 @@
                         </div>
                     </div>
 
+
                     <div class="vif_row">
                         <div class="col-4 f-row-label">
                             {{ $t("view_validator_detail.start_epoch") }}
@@ -104,6 +105,17 @@
                                     use-colors
                                 />
                             </div>
+                        </div>
+                    </div>
+                     <div class="vif_row">
+                        <div class="col-4 f-row-label">
+                            Validator Fee Reward
+                        </div>
+                        <div class="col">
+                            <div v-if="validatorFee !== null">
+                                {{ formatNumberByLocale(numToFixed(WEIToFTM(validatorFee), 2)) }} {{ symbol }}
+                            </div>
+                            <div v-else>Loading...</div>
                         </div>
                     </div>
 
@@ -167,7 +179,7 @@
                     </div>
                 </f-card>
                 <f-card>
-                    <h2>Validator stats</h2>
+                    <h2>Validator Stats</h2>
 
                     <div class="vif_row">
                         <div class="col-4 f-row-label">
@@ -330,6 +342,11 @@ export default {
                     address: this.address
                 };
             },
+            result({ data }) {
+                if (data && data.staker) {
+                    this.fetchValidatorFee(data.staker.id);
+                }
+            },
             error(_error) {
                 this.dStakerByAddressError = _error.message;
             }
@@ -443,6 +460,51 @@ export default {
     methods: {
         onDelegationListRecordsCount(_num) {
             this.dDelegationListRecordsCount = _num;
+        },
+
+        fetchValidatorFee(stakerId) {
+            this.$apollo
+                .query({
+                    query: gql`
+                        query ValidatorFee($id: Long) {
+                            epoch(id: $id) {
+                                actualValidatorRewards {
+                                    id
+                                    totalReward
+                                }
+                            }
+                        }
+                    `,
+                    variables: {
+                        id: `0x${parseInt(844).toString(16)}` // You might want to make this dynamic
+                    }
+                })
+                .then(({ data }) => {
+                    if (
+                        data &&
+                        data.epoch &&
+                        data.epoch.actualValidatorRewards
+                    ) {
+                        const decimalId = this.hexToDecimal(stakerId);
+                        const validatorReward = data.epoch.actualValidatorRewards.find(
+                            reward => reward.id === decimalId
+                        );
+                        // console.log(decimalId, "stakerId");
+                        // console.log(validatorReward, "validatorReward");
+                        this.validatorFee = validatorReward
+                            ? validatorReward.totalReward
+                            : null;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching validator fee:", error);
+                    this.validatorFee = null;
+                });
+        },
+        hexToDecimal(hex) {
+            // Remove '0x' prefix if present
+            hex = hex.replace(/^0x/, "");
+            return parseInt(hex, 16).toString();
         },
 
         WEIToFTM,

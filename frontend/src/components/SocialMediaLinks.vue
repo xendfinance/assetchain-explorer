@@ -117,7 +117,7 @@
                 <div class="socialmedialinks_list">
                     <div>
                         <a
-                            href="https://discord.gg/Bd2RSPcy"
+                            href="https://discord.assetchain.org/"
                             target="_blank"
                             rel="nofollow"
                         >

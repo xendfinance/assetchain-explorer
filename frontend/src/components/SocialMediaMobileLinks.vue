@@ -44,13 +44,27 @@
         </div>
         <div>
             <a
-                href="https://discord.gg/Bd2RSPcy"
+                href="https://discord.assetchain.org"
                 target="_blank"
                 rel="nofollow"
                 title="XEND on Discord"
             >
                 <icon
                     data="@/assets/svg/social-media/mobile/discord.svg"
+                    width="18"
+                    height="18"
+                ></icon>
+            </a>
+        </div>
+         <div>
+            <a
+                href="https://github.com/xendfinance"
+                target="_blank"
+                rel="nofollow"
+                title="Github of AssetChain"
+            >
+                <icon
+                    data="@/assets/svg/social-media/mobile/github.svg"
                     width="18"
                     height="18"
                 ></icon>

@@ -24,56 +24,38 @@
                 Company
             </h2>
             <div class="socialmedialinks_list">
-                <a href="mailto:hello@xend.finance" target="_blank">
+                <a href="mailto:hello@assetchain.org" target="_blank">
                     Contact us</a
                 >
-                <a href="https://xend.finance/terms" target="_blank">
-                    Terms & Conditions</a
-                >
-                <a href="https://xend.finance/policy" target="_blank">
-                    Privacy Policy</a
-                >
             </div>
         </li>
-        <li>
-            <h2>
-                Tools
-            </h2>
-            <div class="socialmedialinks_list">
-                <!-- <a href="" target="_blank">
-                    Bridge
-                </a> -->
-                <a :href="testnetLeaderboardUrl" target="_blank"
-                    >Testnet Leaderboard
-                </a>
-                <a :href="advancedExplorerUrl" target="_blank"
-                    >Advanced Explorer
-                </a>
-                <a :href="bridgeUrl" target="_blank">Bridge</a>
-                <a :href="swapUrl" target="_blank">Swap </a>
+
+        <li v-for="item in footerlinks.menuItems" :key="item.title">
+            <h2>{{ item.title }}</h2>
+            <div
+                v-if="item.title !== 'Community'"
+                class="socialmedialinks_list"
+            >
+                <div v-for="link in item.links" :key="link.text">
+                    <a :href="link.url" target="_blank" rel="nofollow">
+                        <span>{{ link.text }}</span>
+                    </a>
+                </div>
             </div>
         </li>
-        <li>
-            <h2>
-                Staking
-            </h2>
-            <div class="socialmedialinks_list">
-                <a :href="stakingUrl" target="_blank">Native Staking</a>
-                <a href="/staking" target="_blank">Validator Staking </a>
-            </div>
-        </li>
+
         <li>
             <h2>
                 Developers
             </h2>
             <div class="socialmedialinks_list">
-                <a :href="docsUrl" target="_blank">
+                <a href="https://docs.assetchain.org/" target="_blank">
                     Documentation
                 </a>
-                <a :href="academyUrl" target="_blank">Asset Chain Academy</a>
-                <a
-                    href="https://t.me/AssetChainBuilders"
-                    target="_blank"
+                <a href="https://academy.assetchain.org/" target="_blank"
+                    >Asset Chain Academy</a
+                >
+                <a href="https://t.me/AssetChainBuilders" target="_blank"
                     >Asset Chain Developers</a
                 >
             </div>
@@ -143,6 +125,20 @@
                             <span class="socialmedialinks_label">Youtube</span>
                         </a>
                     </div>
+                    <div>
+                        <a
+                            href="https://github.com/xendfinance"
+                            target="_blank"
+                            rel="nofollow"
+                        >
+                            <icon
+                                data="@/assets/svg/social-media/mobile/github.svg"
+                                width="18"
+                                height="18"
+                            ></icon>
+                            <span class="socialmedialinks_label">Github</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </li>
@@ -151,6 +147,7 @@
 
 <script>
 import MetamaskSvg from "../assets/svg/Metamask.vue";
+import { footerlinks } from "../utils/footerlinks"; //change this too footerlinks.mainnet for mainnet
 import { mapActions } from "vuex";
 
 export default {
@@ -162,14 +159,19 @@ export default {
     },
     data() {
         return {
-            bridgeUrl: process.env.VUE_APP_BRIDGE_URL,
-            swapUrl: process.env.VUE_APP_SWAP_URL,
-            stakingUrl: process.env.VUE_APP_STAKING_URL,
-            docsUrl: process.env.VUE_APP_DOCS_URL,
-            academyUrl: process.env.VUE_APP_ACADEMY_URL,
-            advancedExplorerUrl: process.env.VUE_APP_ADAVANCE_EXPLORER_URL,
-            testnetLeaderboardUrl: process.env.VUE_APP_TESTNET_LEADERBOARD
+            footerlinks
         };
+    },
+    created() {
+        this.footerlinks.menuItems.forEach(item => {
+            if (item.links) {
+                item.links.forEach(link => {
+                    if (this[link.url]) {
+                        link.url = this[link.url];
+                    }
+                });
+            }
+        });
     }
 };
 </script>

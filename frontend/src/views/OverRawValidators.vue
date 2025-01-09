@@ -186,7 +186,6 @@ export default {
             }
         }
     },
-
     apollo: {
         currentEpoch: {
             query: gql`

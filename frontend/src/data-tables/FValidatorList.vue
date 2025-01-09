@@ -93,6 +93,32 @@
                         </div>
                     </template>
                 </template>
+                <template v-slot:column-status="{ item }">
+                    <span
+                        :class="{
+                            'status-flagged': item.isCheater,
+                            'status-offline': !item.isCheater && item.isOffline,
+                            'status-inactive':
+                                !item.isActive &&
+                                !item.isOffline &&
+                                !item.isCheater,
+                            'status-active':
+                                item.isActive &&
+                                !item.isOffline &&
+                                !item.isCheater
+                        }"
+                    >
+                        {{
+                            item.isCheater
+                                ? "Flagged"
+                                : item.isOffline
+                                ? "Offline"
+                                : item.isActive
+                                ? "Active"
+                                : "Inactive"
+                        }}
+                    </span>
+                </template>
 
                 <!-- Other column templates remain unchanged -->
             </f-data-table>
@@ -185,7 +211,7 @@ export default {
                 const offline = [];
                 const flagged = [];
                 const inactive = [];
-                let remove = [];
+                // let remove = [];
 
                 if (_key === "stakers") {
                     data = [..._data.data.stakers];
@@ -230,40 +256,33 @@ export default {
 
                     // offline validators
                     if (offline.length > 0) {
-                        offline.forEach((_idx, _index) => {
-                            remove.push(_idx);
-                            offline[_index] = cloneObject(data[_idx]);
-                        });
-
-                        this.$emit("validator-list-offline", offline);
+                        this.$emit(
+                            "validator-list-offline",
+                            offline.map(idx => cloneObject(data[idx]))
+                        );
                     }
 
                     // flagged validators
                     if (flagged.length > 0) {
-                        flagged.forEach((_idx, _index) => {
-                            remove.push(_idx);
-                            flagged[_index] = cloneObject(data[_idx]);
-                        });
-
-                        this.$emit("validator-list-flagged", flagged);
+                        this.$emit(
+                            "validator-list-flagged",
+                            flagged.map(idx => cloneObject(data[idx]))
+                        );
                     }
 
-                    if (remove.length > 0) {
-                        this.removeItemsByIndices(data, remove);
-                    }
+                    // if (remove.length > 0) {
+                    //     this.removeItemsByIndices(data, remove);
+                    // }
 
-                    // inactive validators
-                    remove = [];
+                    // // inactive validators
+                    // remove = [];
                     data.forEach((_item, _idx) => {
                         if (!_item.isActive) {
-                            remove.push(_idx);
                             inactive.push(cloneObject(data[_idx]));
                         }
                     });
 
                     if (inactive.length > 0) {
-                        this.removeItemsByIndices(data, remove);
-
                         this.$emit("validator-list-inactive", inactive);
                     }
 
@@ -404,6 +423,16 @@ export default {
                         ),
                     sortFunc: sortByHex,
                     cssClass: "align-end"
+                },
+                {
+                    name: "status", // Add new status column
+                    label: "Status",
+                    formatter: (_value, _item) => {
+                        if (_item.isCheater) return "Flagged";
+                        if (_item.isOffline) return "Offline";
+                        return _item.isActive ? "Active" : "Inactive";
+                    },
+                    width: "100px"
                 },
                 // computed
                 {
@@ -562,6 +591,23 @@ export default {
     .validator-img img {
         width: 30px;
         height: 30px;
+    }
+
+    .status-inactive {
+        color: $warning-color;
+    }
+
+    .status-offline {
+        color: $error-color;
+    }
+
+    .status-flagged {
+        color: red;
+        font-weight: bold;
+    }
+
+    .status-active {
+        color: $success-color;
     }
 }
 </style>

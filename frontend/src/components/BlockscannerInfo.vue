@@ -85,14 +85,17 @@
                         <p class="label-grey">$RWA Market Cap</p>
                         <p>
                             <span class="label-white"
-                                >{{ "$" + formatNum(tokenPrice * marketCap) }}
+                                >
+                                --
+                                <!-- {{ "$" + formatNum(tokenPrice * marketCap) }} -->
                             </span>
                             <span class="label-grey">
-                                ({{
+
+                                <!-- ({{
                                     formatNum(marketCap.toFixed(2)) +
                                         " " +
                                         "RWA"
-                                }})
+                                }}) -->
                             </span>
                         </p>
                     </div>

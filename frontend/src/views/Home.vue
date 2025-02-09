@@ -7,7 +7,7 @@
                     <f-search-box></f-search-box>
                 </div>
             </div>
-            <TopMarkets></TopMarkets>
+           
             <BlockscannerInfo class="desktop" />
             <BlockscannerInfoMobile class="mobile" />
             <!-- <div class="row row-2-cols-lg no-collapse equal-height">
@@ -212,7 +212,7 @@ import appConfig from "../../app.config.js";
 // import FTMVault from "@/components/FTMVault.vue";
 import DailyBlocks from "@/components/DailyBlocks.vue";
 import DailyTxFees from "@/components/DailyTxFees.vue";
-import TopMarkets from "@/components/TopMarkets.vue";
+// import TopMarkets from "@/components/TopMarkets.vue";
 import BlockscannerInfo from "@/components/BlockscannerInfo.vue";
 import BlockscannerInfoMobile from "../components/BlockscannerInfoMobile.vue";
 
@@ -232,7 +232,7 @@ export default {
         // FCard,
         FSearchBox,
         // AnimatedNumber,
-        TopMarkets,
+        // TopMarkets,
         BlockscannerInfo,
         BlockscannerInfoMobile
     },

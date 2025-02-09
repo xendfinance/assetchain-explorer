@@ -11,16 +11,17 @@
                             <div>
                                 <p>
                                     <span class="label-white">
-                                        {{ "$" + tokenPrice.toFixed(4) }}</span
-                                    >
+                                        --
+                                        <!-- {{ "$" + tokenPrice.toFixed(4) }} -->
+                                    </span>
                                     <span
                                         v-if="tokenChange < 0"
                                         class="label-red"
                                     >
-                                        {{ tokenChange.toFixed(2) }}%
+                                        <!-- {{ tokenChange.toFixed(2) }}% -->
                                     </span>
                                     <span v-else class="label-green">
-                                        +{{ tokenChange.toFixed(2) }}%
+                                        <!-- +{{ tokenChange.toFixed(2) }}% -->
                                     </span>
                                 </p>
                             </div>
@@ -37,10 +38,10 @@
                                         {{
                                             "$" +
                                                 formatNum(
-                                                    (chainState.sealedEpoch
-                                                        .totalSupply -
-                                                        chainState.sealedEpoch
-                                                            .burned) /
+                                                    ((chainState.sealedEpoch
+                                                        .totalSupply || 0) -
+                                                        (chainState.sealedEpoch
+                                                            .burned) || 0) /
                                                         1.0e18
                                                 )
                                         }}</span
@@ -48,10 +49,10 @@
                                     <span class="label-grey">
                                         ({{
                                             formatNum(
-                                                (chainState.sealedEpoch
-                                                    .totalSupply -
-                                                    chainState.sealedEpoch
-                                                        .burned) /
+                                                ((chainState.sealedEpoch
+                                                    .totalSupply || 0) -
+                                                    (chainState.sealedEpoch
+                                                        .burned || 0)) /
                                                     1.0e18
                                             ) +
                                                 " " +

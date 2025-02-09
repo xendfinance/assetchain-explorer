@@ -10,13 +10,14 @@
                         <div>
                             <p>
                                 <span class="label-white">
-                                    {{ "$" + tokenPrice.toFixed(4) }}
+                                    --
+                                    <!-- {{ "$" + tokenPrice.toFixed(4) }} -->
                                 </span>
                                 <span v-if="tokenChange < 0" class="label-red">
-                                    {{ tokenChange.toFixed(2) }}%
+                                    <!-- {{ tokenChange.toFixed(2) }}% -->
                                 </span>
                                 <span v-else class="label-green">
-                                    +{{ tokenChange.toFixed(2) }}%
+                                    <!-- +{{ tokenChange.toFixed(2) }}% -->
                                 </span>
                             </p>
                         </div>
@@ -84,14 +85,17 @@
                         <p class="label-grey">$RWA Market Cap</p>
                         <p>
                             <span class="label-white"
-                                >{{ "$" + formatNum(tokenPrice * marketCap) }}
+                                >
+                                --
+                                <!-- {{ "$" + formatNum(tokenPrice * marketCap) }} -->
                             </span>
                             <span class="label-grey">
-                                ({{
+
+                                <!-- ({{
                                     formatNum(marketCap.toFixed(2)) +
                                         " " +
                                         "RWA"
-                                }})
+                                }}) -->
                             </span>
                         </p>
                     </div>
